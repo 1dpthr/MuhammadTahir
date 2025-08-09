@@ -60,7 +60,7 @@ if (contactForm) {
             const formData = new FormData(contactForm);
             
             // Send to Formspree
-            const response = await fetch('https://formspree.io/f/tahiramanat21@gmail.com', {
+            const response = await fetch('https://formspree.io/f/xyzpleoa', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -77,7 +77,7 @@ if (contactForm) {
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('There was a problem sending your message. Please try again later.');
+            alert('There was a problem sending your message. Please try to Email me.');
         } finally {
             // Reset button state
             submitBtn.disabled = false;
