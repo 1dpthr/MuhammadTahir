@@ -4,41 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Tahir - Software Engineer</title>
-    <meta name="description" content="Muhammad Tahir - Passionate Software Engineering student creating optimized software solutions. Portfolio showcasing skills in C++, Java, UI/UX design, and more.">
+    <meta name="description" content="Muhammad Tahir - Passionate Software Engineering student creating optimized software solutions.">
     <meta name="author" content="Muhammad Tahir">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Styles.css">
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="galaxy-theme">
-    <!-- Particle Canvas for Galaxy Effect -->
-    <canvas id="particleCanvas"></canvas>
-    
-    <!-- Star Field Background -->
-    <div class="star-field"></div>
-    
-    <!-- Shooting Stars -->
-    <div class="shooting-stars">
-        <div class="shooting-star"></div>
-        <div class="shooting-star"></div>
-        <div class="shooting-star"></div>
-        <div class="shooting-star"></div>
-        <div class="shooting-star"></div>
-    </div>
-
+<body>
     <!-- Page Loader -->
     <div class="page-loader" id="pageLoader">
         <div class="loader-content">
-            <div class="loader-logo">
-                <span class="loader-text">#DP</span>
-            </div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-            <p class="loader-text-small">Loading Portfolio...</p>
+            <span class="loader-text">#DP</span>
         </div>
     </div>
 
@@ -48,25 +26,23 @@
     <!-- Navigation -->
     <nav class="nav-container">
         <div class="nav-content">
-            <div class="nav-logo">
-                M.TAHIR
-            </div>
+            <div class="nav-logo">M.TAHIR</div>
             
             <!-- Desktop Navigation -->
-            <div class="nav-links desktop-nav">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
             
             <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
         
@@ -82,143 +58,85 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-bg-effects">
-            <div class="hero-bg-grid"></div>
-            <div class="hero-floating-element hero-float-1"></div>
-            <div class="hero-floating-element hero-float-2"></div>
-            <div class="hero-floating-element hero-float-3"></div>
-        </div>
-        
+    <section class="hero-section" id="home">
         <div class="hero-content">
-            <div class="hero-avatar-enhanced reveal-scale">
-                <div class="avatar-inner">
-                    <img src="assets/Profile.jpg" alt="Muhammad Tahir" class="avatar-image" loading="lazy">
-                    <div class="avatar-fallback">MT</div>
-                </div>
+            <div class="hero-avatar">
+                <img src="assets/Profile.jpg" alt="Muhammad Tahir">
+                <div class="avatar-fallback">MT</div>
             </div>
             
-            <h1 class="hero-title reveal">
-                <span class="hero-title-small">HI, I'M MUHAMMAD TAHIR</span>
-                <span class="hero-title-main animate-gradient-text">CREATIVE DEVELOPER</span>
-            </h1>
+            <p class="hero-subtitle">HI, I'M MUHAMMAD TAHIR</p>
+            <h1 class="hero-title">CREATIVE DEVELOPER</h1>
             
-            <p class="hero-description reveal stagger-1">
+            <p class="hero-description">
                 A passionate Software Engineering student dedicated to creating optimized, 
                 user-focused software solutions. I blend technical expertise with creative 
                 problem-solving to build applications that make a difference.
             </p>
             
-            <p class="hero-tagline reveal stagger-2">
-                // Building the future, one line of code at a time
-            </p>
-            
-            <div class="hero-buttons reveal stagger-3">
-                <button class="btn btn-primary btn-enhanced" onclick="scrollToSection('projects')">
-                    VIEW PORTFOLIO
-                    <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('projects')">
+                    View Portfolio <i class="fas fa-arrow-right"></i>
                 </button>
-                <a href="assets/Muhammad_Tahir_Resume.pdf" download="Muhammad_Tahir_Resume.pdf" class="btn btn-outline btn-enhanced">
-                     DOWNLOAD RESUME
-                    <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                    </svg>
+                <a href="assets/Muhammad_Tahir_Resume.pdf" download class="btn btn-outline">
+                    Download Resume <i class="fas fa-download"></i>
                 </a>
-               
             </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <span>SCROLL</span>
-            <div class="mouse"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="section-bg-enhanced">
-            <div class="bg-gradient-orb"></div>
-            <div class="bg-gradient-orb"></div>
-            <div class="bg-gradient-orb"></div>
-        </div>
-        
+    <section id="about">
         <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">
-                    <span class="section-number">01.</span>
-                    <span class="section-title-text">ABOUT ME</span>
-                </h2>
-                <div class="section-divider-enhanced"></div>
+            <div class="section-header">
+                <span class="section-number">01.</span>
+                <h2 class="section-title">About Me</h2>
+                <p class="section-description">Get to know me better</p>
             </div>
             
             <div class="about-content">
-                <div class="about-text reveal-left">
-                    <div class="about-bio glass-card-enhanced">
-                        <p>
-                            I'm a passionate <strong>Software Engineering student</strong> who thrives on 
-                            turning complex problems into elegant digital solutions. My journey in tech 
-                            began with curiosity about how things work, and has evolved into a deep 
-                            commitment to creating software that genuinely improves people's lives.
-                        </p>
-                        <p>
-                            Currently pursuing my degree in Software Engineering, I'm building a strong 
-                            foundation in computer science fundamentals while staying current with modern 
-                            development practices. I believe in the power of clean, efficient code and 
-                            user-centered design.
-                        </p>
-                        <p>
-                            When I'm not coding, you'll find me exploring new technologies, contributing 
-                            to open-source projects, or working on personal projects that challenge me 
-                            to grow as a developer. I'm always eager to learn and collaborate with 
-                            like-minded individuals who share my passion for innovation.
-                        </p>
-                    </div>
+                <div class="about-text">
+                    <p>
+                        I'm a passionate <strong>Software Engineering student</strong> who thrives on 
+                        turning complex problems into elegant digital solutions. My journey in tech 
+                        began with curiosity about how things work, and has evolved into a deep 
+                        commitment to creating software that genuinely improves people's lives.
+                    </p>
+                    <p>
+                        Currently pursuing my degree in Software Engineering, I'm building a strong 
+                        foundation in computer science fundamentals while staying current with modern 
+                        development practices. I believe in the power of clean, efficient code and 
+                        user-centered design.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me exploring new technologies, contributing 
+                        to open-source projects, or working on personal projects that challenge me 
+                        to grow as a developer.
+                    </p>
                 </div>
                 
                 <div class="about-cards">
-                    <div class="about-card glass-card-enhanced card-lift reveal stagger-1">
-                        <div class="about-card-header">
-                            <div class="about-card-icon education-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 10v6M6 12H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/>
-                                    <path d="M6 12v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5"/>
-                                    <path d="M12 12v9"/>
-                                </svg>
-                            </div>
-                            <h3>Education</h3>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <p>Currently pursuing Software Engineering degree, building strong fundamentals in computer science and modern development practices.</p>
+                        <h3>Education</h3>
+                        <p>Currently pursuing Software Engineering degree, building strong fundamentals in computer science.</p>
                     </div>
                     
-                    <div class="about-card glass-card-enhanced card-lift reveal stagger-2">
-                        <div class="about-card-header">
-                            <div class="about-card-icon mission-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <circle cx="12" cy="12" r="6"/>
-                                    <circle cx="12" cy="12" r="2"/>
-                                </svg>
-                            </div>
-                            <h3>Mission</h3>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-bullseye"></i>
                         </div>
+                        <h3>Mission</h3>
                         <p>To create innovative software solutions that bridge the gap between complex technology and user-friendly experiences.</p>
                     </div>
                     
-                    <div class="about-card glass-card-enhanced card-lift reveal stagger-3">
-                        <div class="about-card-header">
-                            <div class="about-card-icon focus-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                    <line x1="3" y1="10" x2="21" y2="10"/>
-                                </svg>
-                            </div>
-                            <h3>Current Focus</h3>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-laptop-code"></i>
                         </div>
+                        <h3>Current Focus</h3>
                         <p>Expanding knowledge in modern web technologies, data structures & algorithms, and open-source contributions.</p>
                     </div>
                 </div>
@@ -227,152 +145,75 @@
     </section>
 
     <!-- Skills Section -->
-<section id="skills" class="skills-section">
-    <div class="section-bg-enhanced">
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-    </div>
-    
-    <div class="container">
-        <div class="section-header reveal">
-            <h2 class="section-title">
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
                 <span class="section-number">02.</span>
-                <span class="section-title-text">SKILLS</span>
-            </h2>
-            <div class="section-divider-enhanced"></div>
-            <p class="section-description">
-                Technical expertise and creative tools I use to build amazing solutions
-            </p>
-        </div>
-        
-        <div class="skills-grid">
-            <div class="skill-card glass-card-enhanced card-lift reveal stagger-1">
-                <div class="skill-card-content">
-                    <div class="skill-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <polyline points="16,18 22,12 16,6"/>
-                            <polyline points="8,6 2,12 8,18"/>
-                        </svg>
-                    </div>
+                <h2 class="section-title">Skills</h2>
+                <p class="section-description">Technical expertise and creative tools I use</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
                     <h3>Programming Languages</h3>
                     <div class="skill-badges">
-                        <span class="skill-badge-enhanced">C++</span>
-                        <span class="skill-badge-enhanced">Java</span>
-                        <span class="skill-badge-enhanced">Python</span>
+                        <span class="skill-badge">C++</span>
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">Python</span>
                     </div>
                 </div>
-            </div>
-            
-            <!-- New Web Development Card -->
-            <div class="skill-card glass-card-enhanced card-lift reveal stagger-2">
-                <div class="skill-card-content">
-                    <div class="skill-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                            <path d="M6.5 9.5l3 3 3-3m-7 3l3 3 3-3m-3-3v8"/>
-                        </svg>
-                    </div>
+                
+                <div class="skill-card">
                     <h3>Web Development</h3>
                     <div class="skill-badges">
-                        <span class="skill-badge-enhanced">HTML</span>
-                        <span class="skill-badge-enhanced">CSS</span>
-                        <span class="skill-badge-enhanced">JavaScript</span>
-                        <span class="skill-badge-enhanced">React.js</span>
+                        <span class="skill-badge">HTML</span>
+                        <span class="skill-badge">CSS</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">React.js</span>
                     </div>
                 </div>
-            </div>
-            
-            <div class="skill-card glass-card-enhanced card-lift reveal stagger-3">
-                <div class="skill-card-content">
-                    <div class="skill-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                        </svg>
-                    </div>
+                
+                <div class="skill-card">
                     <h3>Tools & Platforms</h3>
                     <div class="skill-badges">
-                        <span class="skill-badge-enhanced">Microsoft Office</span>
-                        <span class="skill-badge-enhanced">GitHub</span>
+                        <span class="skill-badge">GitHub</span>
+                        <span class="skill-badge">VS Code</span>
                     </div>
                 </div>
-            </div>
-            
-            <div class="skill-card glass-card-enhanced card-lift reveal stagger-1">
-                <div class="skill-card-content">
-                    <div class="skill-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <circle cx="13.5" cy="6.5" r=".5"/>
-                            <circle cx="17.5" cy="10.5" r=".5"/>
-                            <circle cx="8.5" cy="7.5" r=".5"/>
-                            <circle cx="6.5" cy="12.5" r=".5"/>
-                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
-                        </svg>
-                    </div>
+                
+                <div class="skill-card">
                     <h3>UI/UX & Design</h3>
                     <div class="skill-badges">
-                        <span class="skill-badge-enhanced">Figma</span>
-                        <span class="skill-badge-enhanced">Prototyping</span>
-                        
+                        <span class="skill-badge">Figma</span>
+                        <span class="skill-badge">Prototyping</span>
                     </div>
                 </div>
-            </div>
-            
-            <div class="skill-card glass-card-enhanced card-lift reveal stagger-2">
-                <div class="skill-card-content">
-                    <div class="skill-icon">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                            <circle cx="12" cy="13" r="3"/>
-                        </svg>
-                    </div>
+                
+                <div class="skill-card">
                     <h3>Media & Content</h3>
                     <div class="skill-badges">
-                        <span class="skill-badge-enhanced">Video Editing</span>
-                        <span class="skill-badge-enhanced">Videography</span>
-                        <span class="skill-badge-enhanced">Adobe Photoshop</span>
-                        <span class="skill-badge-enhanced">Adobe Premiere</span>
+                        <span class="skill-badge">Video Editing</span>
+                        <span class="skill-badge">Adobe Photoshop</span>
+                        <span class="skill-badge">Premiere Pro</span>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="skills-note reveal-scale">
-            <p>// Currently expanding my skillset with modern web technologies and frameworks</p>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Experience Section -->
-<section id="experience" class="experience-section">
-    <div class="section-bg-enhanced">
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-    </div>
-    
-    <div class="container">
-        <div class="section-header reveal">
-            <h2 class="section-title">
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
                 <span class="section-number">03.</span>
-                <span class="section-title-text">EXPERIENCE</span>
-            </h2>
-            <div class="section-divider-enhanced"></div>
-            <p class="section-description">
-                Professional journey and key projects
-            </p>
-        </div>
-        
-        <div class="experience-timeline timeline-enhanced">
-            <!-- Experience Card -->
-            <div class="experience-card glass-card-enhanced card-lift reveal stagger-1">
-                <div class="experience-card-header">
-                    <div class="experience-company-logo animate-pulse-glow">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                        </svg>
+                <h2 class="section-title">Experience</h2>
+                <p class="section-description">Professional journey and key projects</p>
+            </div>
+            
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="experience-logo">
+                        <i class="fas fa-code"></i>
                     </div>
                     <div class="experience-meta">
                         <h3>Softech Digital Group</h3>
@@ -382,98 +223,67 @@
                 </div>
                 
                 <div class="experience-content">
-                    <div class="experience-responsibilities">
-                        <h4>Key Responsibilities & Achievements</h4>
-                        <ul>
-                            <li>
-                                <span class="bullet">+</span>
-                                <span><strong>Front-End Development:</strong> Developed the user interface for "Fit Kro," a fitness-focused application, utilizing React.js to create a responsive and interactive user experience.</span>
-                            </li>
-                            <li>
-                                <span class="bullet">+</span>
-                                <span><strong>UI/UX Design:</strong> Designed and developed a comprehensive Figma prototype for "Style Sathi," focusing on intuitive user flows and modern design aesthetics for an e-commerce platform.</span>
-                            </li>
-                            <li>
-                                <span class="bullet">+</span>
-                                <span><strong>Intellectual Property & Compliance:</strong> Handled sensitive company data and original codebases in strict accordance with non-disclosure and intellectual property assignment protocols.</span>
-                            </li>
-                            <li>
-                                <span class="bullet">+</span>
-                                <span><strong>Agile Collaboration:</strong> Completed a rigorous two-week probationary period followed by full project integration, contributing to the company's digital product portfolio.</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <h4>Key Responsibilities & Achievements</h4>
+                    <ul>
+                        <li>
+                            <span class="bullet">+</span>
+                            <span><strong>Front-End Development:</strong> Developed the user interface for "Fit Kro," a fitness-focused application using React.js.</span>
+                        </li>
+                        <li>
+                            <span class="bullet">+</span>
+                            <span><strong>UI/UX Design:</strong> Designed a comprehensive Figma prototype for "Style Sathi," an e-commerce platform.</span>
+                        </li>
+                        <li>
+                            <span class="bullet">+</span>
+                            <span><strong>Compliance:</strong> Handled sensitive company data and original codebases according to NDA protocols.</span>
+                        </li>
+                        <li>
+                            <span class="bullet">+</span>
+                            <span><strong>Collaboration:</strong> Completed probationary period and contributed to the company's digital product portfolio.</span>
+                        </li>
+                    </ul>
                     
-                    <div class="experience-skills">
-                        <h4>Technical Skills Used</h4>
-                        <div class="skill-tags">
-                            <span class="skill-tag">React.js</span>
-                            <span class="skill-tag">HTML5</span>
-                            <span class="skill-tag">CSS3</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Figma</span>
-                            <span class="skill-tag">Prototyping</span>
-                            <span class="skill-tag">Wireframing</span>
-                            <span class="skill-tag">UI/UX Design</span>
-                            <span class="skill-tag">Confidentiality Management</span>
-                            <span class="skill-tag">Technical Documentation</span>
-                        </div>
+                    <h4>Technical Skills Used</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">UI/UX Design</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- Services Section -->
-<section id="services" class="services-section">
-    <div class="section-bg-enhanced">
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-    </div>
-    
-    <div class="container">
-        <div class="section-header reveal">
-            <h2 class="section-title">
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
                 <span class="section-number">04.</span>
-                <span class="section-title-text">SERVICES</span>
-            </h2>
-            <div class="section-divider-enhanced"></div>
-            <p class="section-description">
-                Comprehensive software solutions tailored to your needs
-            </p>
-        </div>
-        
-        <div class="services-grid">
-            <div class="service-card glass-card-enhanced card-lift reveal stagger-1">
-                <div class="service-card-content">
+                <h2 class="section-title">Services</h2>
+                <p class="section-description">Comprehensive software solutions tailored to your needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
                     <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <polyline points="16,18 22,12 16,6"/>
-                            <polyline points="8,6 2,12 8,18"/>
-                        </svg>
+                        <i class="fas fa-code"></i>
                     </div>
                     <h3>Software Development</h3>
                     <p>Custom software solutions built with modern technologies and best practices.</p>
                     <div class="service-features">
                         <div class="feature">Desktop Applications</div>
                         <div class="feature">Algorithm Optimization</div>
-                        <div class="feature">Code Review & Analysis</div>
+                        <div class="feature">Code Review</div>
                     </div>
-                    <button class="btn btn-outline service-btn btn-enhanced" onclick="scrollToSection('contact')">Get Started</button>
+                    <button class="btn btn-outline btn-sm" onclick="scrollToSection('contact')">Get Started</button>
                 </div>
-            </div>
-            
-            <!-- New Web Development Service Card -->
-            <div class="service-card glass-card-enhanced card-lift reveal stagger-2">
-                <div class="service-card-content">
+                
+                <div class="service-card">
                     <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                            <path d="M6.5 9.5l3 3 3-3m-7 3l3 3 3-3m-3-3v8"/>
-                        </svg>
+                        <i class="fas fa-globe"></i>
                     </div>
                     <h3>Web Development</h3>
                     <p>Modern, responsive websites and web applications built with the latest technologies.</p>
@@ -482,20 +292,12 @@
                         <div class="feature">Responsive Design</div>
                         <div class="feature">Web Performance</div>
                     </div>
-                    <button class="btn btn-outline service-btn btn-enhanced" onclick="scrollToSection('contact')">Get Started</button>
+                    <button class="btn btn-outline btn-sm" onclick="scrollToSection('contact')">Get Started</button>
                 </div>
-            </div>
-            
-            <div class="service-card glass-card-enhanced card-lift reveal stagger-3">
-                <div class="service-card-content">
+                
+                <div class="service-card">
                     <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <circle cx="13.5" cy="6.5" r=".5"/>
-                            <circle cx="17.5" cy="10.5" r=".5"/>
-                            <circle cx="8.5" cy="7.5" r=".5"/>
-                            <circle cx="6.5" cy="12.5" r=".5"/>
-                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
-                        </svg>
+                        <i class="fas fa-palette"></i>
                     </div>
                     <h3>UI/UX Design</h3>
                     <p>User-centered design solutions that create engaging and intuitive experiences.</p>
@@ -504,17 +306,12 @@
                         <div class="feature">User Interface Design</div>
                         <div class="feature">Design Systems</div>
                     </div>
-                    <button class="btn btn-outline service-btn btn-enhanced" onclick="scrollToSection('contact')">Get Started</button>
+                    <button class="btn btn-outline btn-sm" onclick="scrollToSection('contact')">Get Started</button>
                 </div>
-            </div>
-            
-            <div class="service-card glass-card-enhanced card-lift reveal stagger-1">
-                <div class="service-card-content">
+                
+                <div class="service-card">
                     <div class="service-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                            <circle cx="12" cy="13" r="3"/>
-                        </svg>
+                        <i class="fas fa-video"></i>
                     </div>
                     <h3>Content Creation</h3>
                     <p>Professional video editing and content creation services for digital platforms.</p>
@@ -523,408 +320,269 @@
                         <div class="feature">Motion Graphics</div>
                         <div class="feature">Brand Content</div>
                     </div>
-                    <button class="btn btn-outline service-btn btn-enhanced" onclick="scrollToSection('contact')">Get Started</button>
+                    <button class="btn btn-outline btn-sm" onclick="scrollToSection('contact')">Get Started</button>
                 </div>
             </div>
         </div>
-        
-        <div class="services-cta reveal-scale">
-            <h3>Ready to start your project?</h3>
-            <p>Let's collaborate to bring your ideas to life with cutting-edge technology and creative solutions.</p>
-            <button class="btn btn-primary btn-enhanced" onclick="scrollToSection('contact')">Start a Project</button>
-        </div>
-    </div>
-</section>
-   <!-- Projects Section -->
-<section id="projects" class="projects-section">
-    <div class="section-bg-enhanced">
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-        <div class="bg-gradient-orb"></div>
-    </div>
-    
-    <div class="container">
-        <div class="section-header reveal">
-            <h2 class="section-title">
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
                 <span class="section-number">05.</span>
-                <span class="section-title-text">PROJECTS</span>
-            </h2>
-            <div class="section-divider-enhanced"></div>
-            <p class="section-description">
-                A selection of my practical projects demonstrating various skills
-            </p>
-        </div>
-        
-        <!-- Internship/Job Projects Section -->
-        <div class="internship-projects-header reveal">
-            <h3 class="internship-title">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-                Professional Experience Projects
-            </h3>
-            <span class="internship-badge">Softech Digital Group</span>
-        </div>
-        
-        <div class="projects-grid internship-projects-grid">
-            
-            <!-- Fit Kro - Internship Project -->
-            <div class="project-card internship-project-card glass-card-enhanced card-lift reveal stagger-1">
-                <div class="internship-badge-overlay">Internship Project</div>
-                <div class="project-card-content">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-                                <line x1="6" y1="1" x2="6" y2="4"/>
-                                <line x1="10" y1="1" x2="10" y2="4"/>
-                                <line x1="14" y1="1" x2="14" y2="4"/>
-                            </svg>
-                        </div>
-                        <div class="project-meta">
-                            <span class="project-type">Web & Mobile App</span>
-                            <span class="project-role">Front-End Developer</span>
-                        </div>
-                    </div>
-                    <h3>Fit Kro</h3>
-                    <p>Fitness-focused application developed during internship at Softech Digital Group. Features responsive web and mobile interfaces built using React.js.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge-enhanced">React.js</span>
-                        <span class="tech-badge-enhanced">HTML5</span>
-                        <span class="tech-badge-enhanced">CSS3</span>
-                        <span class="tech-badge-enhanced">JavaScript</span>
-                    </div>
-                    <div class="project-actions">
-                        <a href="https://1dpthr.github.io/Fit-Kro/" target="_blank" class="btn btn-sm btn-primary btn-enhanced">
-                            Web Version
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
-                        <a href="https://1dpthr.github.io/Fit-Kro-Mob/" target="_blank" class="btn btn-sm btn-outline btn-enhanced">
-                            Mobile Version
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+                <h2 class="section-title">Projects</h2>
+                <p class="section-description">A selection of my practical projects</p>
             </div>
             
-            <!-- Style Sathi - Internship Project -->
-            <div class="project-card internship-project-card glass-card-enhanced card-lift reveal stagger-2">
-                <div class="internship-badge-overlay">Internship Project</div>
-                <div class="project-card-content">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <circle cx="9" cy="21" r="1"/>
-                                <circle cx="20" cy="21" r="1"/>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 h9.72 1.61a2 2 0 0 0 2-1.61L23 6H6"/>
-                            </svg>
+            <div class="projects-grid">
+                <!-- Fit Kro -->
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="project-meta">
+                                <span class="project-type">Web & Mobile App</span>
+                                <span class="project-role">Front-End Developer</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="project-type">UI/UX Design</span>
-                            <span class="project-role">UI/UX Designer</span>
+                        <h3>Fit Kro</h3>
+                        <p>Fitness-focused application developed during internship. Features responsive web and mobile interfaces using React.js.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
                         </div>
-                    </div>
-                    <h3>Style Sathi</h3>
-                    <p>Comprehensive e-commerce platform prototype created during internship. Includes customer, seller, and admin interfaces designed in Figma.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge-enhanced">Figma</span>
-                        <span class="tech-badge-enhanced">Prototyping</span>
-                        <span class="tech-badge-enhanced">UI/UX Design</span>
-                        <span class="tech-badge-enhanced">Wireframing</span>
-                    </div>
-                    <div class="project-actions">
-                        <a href="https://www.figma.com/proto/lOtS5XICaEG3Wc3UjokG1l/Style-Sathi?node-id=1-3&starting-point-node-id=1%3A3" target="_blank" class="btn btn-sm btn-primary btn-enhanced">
-                            Customer Side
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.figma.com/proto/lOtS5XICaEG3Wc3UjokG1l/Style-Sathi?node-id=556-151" target="_blank" class="btn btn-sm btn-outline btn-enhanced">
-                            Seller Side
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.figma.com/proto/lOtS5XICaEG3Wc3UjokG1l/Style-Sathi?node-id=593-250&starting-point-node-id=592%3A444" target="_blank" class="btn btn-sm btn-outline btn-enhanced">
-                            Admin Side
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </a>
+                        <div class="project-actions">
+                            <a href="https://1dpthr.github.io/Fit-Kro/" target="_blank" class="btn btn-primary btn-sm">
+                                Web Version <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://1dpthr.github.io/Fit-Kro-Mob/" target="_blank" class="btn btn-outline btn-sm">
+                                Mobile <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-        </div>
-        
-        <!-- Personal Projects Divider -->
-        <div class="personal-projects-divider reveal">
-            <div class="divider-line"></div>
-            <span class="divider-text">Personal Projects</span>
-            <div class="divider-line"></div>
-        </div>
-        
-        <!-- Personal Projects Grid -->
-        <div class="projects-grid">
-            <!-- Hangman Game Project -->
-            <div class="project-card glass-card-enhanced card-lift reveal stagger-1">
-                <div class="project-card-content">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path d="M10 20v-6m4 6v-6m5-8h.01M15 4h.01M9 4h.01M4 8h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"/>
-                            </svg>
+                
+                <!-- Style Sathi -->
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="project-meta">
+                                <span class="project-type">UI/UX Design</span>
+                                <span class="project-role">UI/UX Designer</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="project-type">Console Game</span>
-                            <span class="project-role">C++ Developer</span>
+                        <h3>Style Sathi</h3>
+                        <p>Comprehensive e-commerce platform prototype created during internship. Includes customer, seller, and admin interfaces.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Figma</span>
+                            <span class="tech-badge">Prototyping</span>
+                            <span class="tech-badge">UI/UX Design</span>
                         </div>
-                    </div>
-                    <h3>Hangman Game</h3>
-                    <p>A classic word-guessing game implemented in C++ with file-based word bank, score tracking, and ASCII art for the hangman visuals.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge-enhanced">C++</span>
-                        <span class="tech-badge-enhanced">File I/O</span>
-                        <span class="tech-badge-enhanced">OOP</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn btn-sm btn-outline btn-enhanced" onclick="window.open('https://github.com/1dpthr/HangmanGame', '_blank')">
-                            Source Code
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </button>
+                        <div class="project-actions">
+                            <a href="https://www.figma.com/proto/lOtS5XICaEG3Wc3UjokG1l/Style-Sathi" target="_blank" class="btn btn-primary btn-sm">
+                                View Prototype <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Hotel Management Project -->
-            <div class="project-card glass-card-enhanced card-lift reveal stagger-2">
-                <div class="project-card-content">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                                <polyline points="9 22 9 12 15 12 15 22"/>
-                            </svg>
+                
+                <!-- Hangman Game -->
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="project-meta">
+                                <span class="project-type">Console Game</span>
+                                <span class="project-role">C++ Developer</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="project-type">Management System</span>
-                            <span class="project-role">Python Developer</span>
+                        <h3>Hangman Game</h3>
+                        <p>A classic word-guessing game implemented in C++ with file-based word bank, score tracking, and ASCII art visuals.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">C++</span>
+                            <span class="tech-badge">File I/O</span>
+                            <span class="tech-badge">OOP</span>
                         </div>
-                    </div>
-                    <h3>Hotel Management System</h3>
-                    <p>A Python application for hotel operations including room booking, guest management, and billing with a Simple user interface.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge-enhanced">Python</span>
-                        <span class="tech-badge-enhanced">SQLite</span>
-                        <span class="tech-badge-enhanced">Tkinter (GUI)</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn btn-sm btn-outline btn-enhanced" onclick="window.open('https://github.com/1dpthr/HotelManagment-python-', '_blank')">
-                            Source Code
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </button>
+                        <div class="project-actions">
+                            <a href="https://github.com/1dpthr/HangmanGame" target="_blank" class="btn btn-outline btn-sm">
+                                Source Code <i class="fab fa-github"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- EasyPaisa Prototype -->
-            <div class="project-card glass-card-enhanced card-lift reveal stagger-3">
-                <div class="project-card-content">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                                <path d="M12 8v8m-4-4h8"/>
-                            </svg>
+                
+                <!-- Hotel Management -->
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                            <div class="project-meta">
+                                <span class="project-type">Management System</span>
+                                <span class="project-role">Python Developer</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="project-type">Mobile App Design</span>
-                            <span class="project-role">UI/UX Designer</span>
+                        <h3>Hotel Management System</h3>
+                        <p>A Python application for hotel operations including room booking, guest management, and billing with a simple GUI.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">SQLite</span>
+                            <span class="tech-badge">Tkinter</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://github.com/1dpthr/HotelManagment-python-" target="_blank" class="btn btn-outline btn-sm">
+                                Source Code <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
-                    <h3>EasyPaisa Replica</h3>
-                    <p>A modern UI/UX redesign concept for EasyPaisa mobile app, focusing on improved user flows and visual aesthetics while maintaining brand identity.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge-enhanced">Figma</span>
-                        <span class="tech-badge-enhanced">UI Redesign</span>
-                        <span class="tech-badge-enhanced">Mobile App</span>
-                        <span class="tech-badge-enhanced">User Flows</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn btn-sm btn-outline btn-enhanced" onclick="window.open('https://www.figma.com/proto/2H99Tf0N9GP2YceT1h4fzn/figma-Easypaisa-assignment?node-id=0-1', '_blank')">
-                            View Prototype
-                            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                            </svg>
-                        </button>
+                </div>
+                
+                <!-- EasyPaisa Replica -->
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="project-meta">
+                                <span class="project-type">Mobile App Design</span>
+                                <span class="project-role">UI/UX Designer</span>
+                            </div>
+                        </div>
+                        <h3>EasyPaisa Replica</h3>
+                        <p>A modern UI/UX redesign concept for EasyPaisa mobile app, focusing on improved user flows and visual aesthetics.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Figma</span>
+                            <span class="tech-badge">UI Redesign</span>
+                            <span class="tech-badge">Mobile App</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://www.figma.com/proto/2H99Tf0N9GP2YceT1h4fzn/figma-Easypaisa-assignment" target="_blank" class="btn btn-outline btn-sm">
+                                View Prototype <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="projects-cta reveal-scale">
-            <h3>Want to see more of my work?</h3>
-            <p>Check out my GitHub profile for additional projects and code samples.</p>
-            <a href="https://github.com/1dpthr" target="_blank" class="btn btn-primary btn-enhanced">
-                View GitHub Profile
-                <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                </svg>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
+
     <!-- Contact Section -->
-<section id="contact" class="contact-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
                 <span class="section-number">06.</span>
-                <span class="section-title-text">GET IN TOUCH</span>
-            </h2>
-            <div class="section-divider"></div>
-            <p class="section-description">
-                Ready to collaborate? Let's discuss your next project and create something amazing together.
-            </p>
-        </div>
-        
-        <div class="contact-content">
-            <div class="contact-form-container">
-    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xyzpleoa" method="POST">
-        <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">
-            Send Message
-            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="22" y1="2" x2="11" y2="13"/>
-                <polygon points="22,2 15,22 11,13 2,9"/>
-            </svg>
-        </button>
-    </form>
-</div>
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-description">Ready to collaborate? Let's discuss your next project.</p>
+            </div>
             
-            <div class="contact-info">
+            <div class="contact-content">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/xyzpleoa" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+                
                 <div class="contact-links">
                     <a href="mailto:tahiramanat21@gmail.com" class="contact-link">
-                        <div class="contact-link-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
                         </div>
-                        <div class="contact-link-content">
-                            <span class="contact-platform">Email</span>
-                            <span class="contact-handle">tahiramanat21@gmail.com</span>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <span>tahiramanat21@gmail.com</span>
                         </div>
                     </a>
                     
                     <a href="https://www.linkedin.com/in/dpthr/" target="_blank" class="contact-link">
-                        <div class="contact-link-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                                <rect x="2" y="9" width="4" height="12"/>
-                                <circle cx="4" cy="4" r="2"/>
-                            </svg>
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin-in"></i>
                         </div>
-                        <div class="contact-link-content">
-                            <span class="contact-platform">LinkedIn</span>
-                            <span class="contact-handle">www.linkedin.com/in/dpthr</span>
+                        <div class="contact-info">
+                            <h4>LinkedIn</h4>
+                            <span>www.linkedin.com/in/dpthr</span>
                         </div>
                     </a>
                     
                     <a href="https://github.com/1dpthr" target="_blank" class="contact-link">
-                        <div class="contact-link-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                            </svg>
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
                         </div>
-                        <div class="contact-link-content">
-                            <span class="contact-platform">GitHub</span>
-                            <span class="contact-handle">@1dpthr</span>
+                        <div class="contact-info">
+                            <h4>GitHub</h4>
+                            <span>@1dpthr</span>
                         </div>
-                    </a>
-
-                    <!-- Instagram Link -->
-                    <a href="https://www.instagram.com/dp.thr/" target="_blank" class="contact-link">
-                        <div class="contact-link-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                            </svg>
-                        </div>
-                        <div class="contact-link-content">
-                            <span class="contact-platform">Instagram</span>
-                            <span class="contact-handle">@dp.thr</span>
-                        </div>
-                    </a>
-
-                <div class="resume-download">
-                    <a href="assets/Muhammad_Tahir_Resume.pdf" download="Muhammad_Tahir_Resume.pdf" class="btn btn-outline">
-                        Download Resume
-                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                        </svg>
                     </a>
                     
-                </div>
-                
-                <div class="contact-note">
-                    <p>I typically respond within 24 hours. Looking forward to hearing from you!</p>
+                    <a href="https://www.instagram.com/dp.thr/" target="_blank" class="contact-link">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h4>Instagram</h4>
+                            <span>@dp.thr</span>
+                        </div>
+                    </a>
+                    
+                    <div class="contact-cta">
+                        <a href="assets/Muhammad_Tahir_Resume.pdf" download class="btn btn-outline">
+                            Download Resume <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-note">
+                        I typically respond within 24 hours. Looking forward to hearing from you!
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-main">
-                    <div class="footer-logo">DP.THR</div>
-                    <p class="footer-text">
-                        Built with passion by Muhammad Tahir
-                    </p>
-                    <div class="footer-social">
-                        <a href="https://github.com/1dpthr" target="_blank" class="social-link" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/dpthr/" target="_blank" class="social-link" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://www.instagram.com/dp.thr/" target="_blank" class="social-link" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="mailto:tahiramanat21@gmail.com" class="social-link" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p class="footer-copyright">© 2025 Muhammad Tahir. Future Software Engineer.</p>
-                    <p class="footer-tagline">Crafting code that makes a difference</p>
-                </div>
+            <div class="footer-logo">DP.THR</div>
+            <p class="footer-text">Built with passion by Muhammad Tahir</p>
+            
+            <div class="footer-social">
+                <a href="https://github.com/1dpthr" target="_blank" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/dpthr/" target="_blank" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/dp.thr/" target="_blank" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:tahiramanat21@gmail.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Muhammad Tahir. Future Software Engineer.</p>
             </div>
         </div>
     </footer>
@@ -932,3 +590,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
