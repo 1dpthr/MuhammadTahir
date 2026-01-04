@@ -402,8 +402,17 @@ if (contactForm) {
 // Scroll animation for sections - Fixed to target all section elements
 const sections = document.querySelectorAll('section');
 const windowHeight = window.innerHeight;
+const isMobile = window.innerWidth <= 768;
 
 function checkScroll() {
+    if (isMobile) {
+        // Skip scroll animations on mobile to prevent jitter
+        sections.forEach(section => {
+            section.classList.add('active');
+        });
+        return;
+    }
+    
     sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
         const sectionVisible = 150;
@@ -417,8 +426,10 @@ function checkScroll() {
 // Initial check
 checkScroll();
 
-// Check on scroll
-window.addEventListener('scroll', checkScroll);
+// Check on scroll (only on desktop)
+if (!isMobile) {
+    window.addEventListener('scroll', checkScroll);
+}
 
 // Download resume button
 const downloadResumeBtn = document.querySelectorAll('.btn-outline');

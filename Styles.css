@@ -329,6 +329,45 @@ body {
   .hero-bg-effects {
     display: none;
   }
+  
+  /* Disable all scroll reveal animations on mobile */
+  .reveal,
+  .reveal.active,
+  .reveal-left,
+  .reveal-left.active,
+  .reveal-right,
+  .reveal-right.active,
+  .reveal-scale,
+  .reveal-scale.active {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Disable all staggered animation delays */
+  .stagger-1,
+  .stagger-2,
+  .stagger-3,
+  .stagger-4,
+  .stagger-5,
+  .stagger-6 {
+    transition-delay: 0s !important;
+  }
+  
+  /* Fix profile image jitter - disable avatar animation */
+  .hero-avatar-enhanced,
+  .hero-avatar-enhanced .avatar-inner {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* Fix about section title jitter */
+  .section-header.reveal,
+  .about-text.reveal-left {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Star Field Background */
