@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeTypewriter();
     initializeParallax();
     initializeMagneticButtons();
-    createParticles();
-    createStars();
 });
 
 // Mobile Navigation
@@ -215,46 +213,6 @@ function scrollToSection(sectionId) {
             behavior: 'smooth',
             easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
         });
-    }
-}
-
-// Particle System
-function createParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
-
-    const particleCount = 50;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-        particle.style.width = (2 + Math.random() * 4) + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.opacity = 0.3 + Math.random() * 0.5;
-        container.appendChild(particle);
-    }
-}
-
-// Star Generation
-function createStars() {
-    const container = document.getElementById('stars');
-    if (!container) return;
-
-    const starCount = 100;
-
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 3 + 's';
-        star.style.animationDuration = (2 + Math.random() * 2) + 's';
-        star.style.width = (1 + Math.random() * 2) + 'px';
-        star.style.height = star.style.width;
-        container.appendChild(star);
     }
 }
 
