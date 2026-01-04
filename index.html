@@ -13,6 +13,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Background Effects -->
+    <div class="floating-bg">
+        <div class="floating-orb floating-orb-1"></div>
+        <div class="floating-orb floating-orb-2"></div>
+        <div class="floating-orb floating-orb-3"></div>
+    </div>
+    
+    <!-- Star Field -->
+    <div class="star-field"></div>
+    
     <!-- Page Loader -->
     <div class="page-loader" id="pageLoader">
         <div class="loader-content">
@@ -22,6 +32,31 @@
 
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- Animated Background Elements -->
+    <div class="aurora">
+        <div class="aurora-band"></div>
+        <div class="aurora-band"></div>
+        <div class="aurora-band"></div>
+    </div>
+    
+    <div class="glow-lines">
+        <div class="glow-line"></div>
+        <div class="glow-line"></div>
+        <div class="glow-line"></div>
+        <div class="glow-line"></div>
+        <div class="glow-line"></div>
+    </div>
+    
+    <div class="stars" id="stars"></div>
+    
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+    
+    <div class="particles" id="particles"></div>
 
     <!-- Navigation -->
     <nav class="nav-container">
@@ -209,48 +244,58 @@
                 <h2 class="section-title">Experience</h2>
                 <p class="section-description">Professional journey and key projects</p>
             </div>
-            
-            <div class="experience-card">
-                <div class="experience-header">
-                    <div class="experience-logo">
-                        <i class="fas fa-code"></i>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
                     </div>
-                    <div class="experience-meta">
-                        <h3>Softech Digital Group</h3>
-                        <span class="experience-role">Software Engineering Intern</span>
-                        <span class="experience-duration">October 2025 – December 2025</span>
-                    </div>
-                </div>
-                
-                <div class="experience-content">
-                    <h4>Key Responsibilities & Achievements</h4>
-                    <ul>
-                        <li>
-                            <span class="bullet">+</span>
-                            <span><strong>Front-End Development:</strong> Developed the user interface for "Fit Kro," a fitness-focused application using React.js.</span>
-                        </li>
-                        <li>
-                            <span class="bullet">+</span>
-                            <span><strong>UI/UX Design:</strong> Designed a comprehensive Figma prototype for "Style Sathi," an e-commerce platform.</span>
-                        </li>
-                        <li>
-                            <span class="bullet">+</span>
-                            <span><strong>Compliance:</strong> Handled sensitive company data and original codebases according to NDA protocols.</span>
-                        </li>
-                        <li>
-                            <span class="bullet">+</span>
-                            <span><strong>Collaboration:</strong> Completed probationary period and contributed to the company's digital product portfolio.</span>
-                        </li>
-                    </ul>
-                    
-                    <h4>Technical Skills Used</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">UI/UX Design</span>
+                    <div class="timeline-content">
+                        <div class="experience-card">
+                            <div class="experience-header">
+                                <div class="experience-logo">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="experience-meta">
+                                    <h3>Softech Digital Group</h3>
+                                    <span class="experience-role">Software Engineering Intern</span>
+                                    <span class="experience-duration">October 2025 – December 2025</span>
+                                </div>
+                            </div>
+
+                            <div class="experience-content">
+                                <h4>Key Responsibilities & Achievements</h4>
+                                <ul>
+                                    <li>
+                                        <span class="bullet">+</span>
+                                        <span><strong>Front-End Development:</strong> Developed the user interface for "Fit Kro," a fitness-focused application using React.js.</span>
+                                    </li>
+                                    <li>
+                                        <span class="bullet">+</span>
+                                        <span><strong>UI/UX Design:</strong> Designed a comprehensive Figma prototype for "Style Sathi," an e-commerce platform.</span>
+                                    </li>
+                                    <li>
+                                        <span class="bullet">+</span>
+                                        <span><strong>Compliance:</strong> Handled sensitive company data and original codebases according to NDA protocols.</span>
+                                    </li>
+                                    <li>
+                                        <span class="bullet">+</span>
+                                        <span><strong>Collaboration:</strong> Completed probationary period and contributed to the company's digital product portfolio.</span>
+                                    </li>
+                                </ul>
+
+                                <h4>Technical Skills Used</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React.js</span>
+                                    <span class="skill-tag">HTML5</span>
+                                    <span class="skill-tag">CSS3</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">Figma</span>
+                                    <span class="skill-tag">UI/UX Design</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
