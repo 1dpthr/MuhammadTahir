@@ -30,7 +30,9 @@ class ParticleSystem {
         this.particles = [];
         this.connections = [];
         this.mouse = { x: null, y: null, radius: 150 };
-        this.particleCount = 80;
+        // Reduce particle count on mobile for better performance
+        this.isMobile = window.innerWidth <= 768;
+        this.particleCount = this.isMobile ? 20 : 80;
         this.connectionDistance = 150;
         this.mouseConnectionDistance = 200;
         
@@ -126,8 +128,8 @@ class ParticleSystem {
                 particle.vy *= -1;
             }
             
-            // Mouse interaction - repel particles
-            if (this.mouse.x !== null) {
+            // Mouse interaction - repel particles (skip on mobile for performance)
+            if (this.mouse.x !== null && !this.isMobile) {
                 const dx = this.mouse.x - particle.x;
                 const dy = this.mouse.y - particle.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
@@ -152,7 +154,7 @@ class ParticleSystem {
             }
             
             // Limit velocity
-            const maxVelocity = 2;
+            const maxVelocity = this.isMobile ? 1 : 2;
             const velocity = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
             if (velocity > maxVelocity) {
                 particle.vx = (particle.vx / velocity) * maxVelocity;
@@ -163,7 +165,13 @@ class ParticleSystem {
         // Reset connections
         this.connections = [];
         
-        // Create connections between nearby particles
+        // Skip connection drawing on mobile for better performance
+        if (this.isMobile) {
+            // Just update particle positions without drawing connections
+            return;
+        }
+        
+        // Create connections between nearby particles (desktop only)
         for (let i = 0; i < this.particles.length; i++) {
             for (let j = i + 1; j < this.particles.length; j++) {
                 const dx = this.particles[i].x - this.particles[j].x;
@@ -223,46 +231,67 @@ class ParticleSystem {
         // Draw particles as stars with white centers
         const time = Date.now() * 0.001;
         
-        for (let particle of this.particles) {
-            // Calculate twinkle effect
-            const twinkle = Math.sin(time * 2 + particle.twinkleOffset) * 0.3 + 0.7;
-            
-            // Draw glow halo
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
-            const gradient = this.ctx.createRadialGradient(
-                particle.x, particle.y, 0,
-                particle.x, particle.y, particle.size * 3
-            );
-            gradient.addColorStop(0, `rgba(139, 92, 246, ${0.6 * twinkle})`);
-            gradient.addColorStop(0.3, `rgba(124, 58, 237, ${0.3 * twinkle})`);
-            gradient.addColorStop(1, 'transparent');
-            this.ctx.fillStyle = gradient;
-            this.ctx.fill();
-            
-            // Draw outer glow
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size * 1.5, 0, Math.PI * 2);
-            const outerGradient = this.ctx.createRadialGradient(
-                particle.x, particle.y, 0,
-                particle.x, particle.y, particle.size * 1.5
-            );
-            outerGradient.addColorStop(0, `rgba(139, 92, 246, ${0.8 * twinkle})`);
-            outerGradient.addColorStop(1, 'transparent');
-            this.ctx.fillStyle = outerGradient;
-            this.ctx.fill();
-            
-            // Draw white star center
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size * 0.5, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(255, 255, 255, ${0.9 * twinkle})`;
-            this.ctx.fill();
-            
-            // Draw bright core
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size * 0.2, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(255, 255, 255, ${twinkle})`;
-            this.ctx.fill();
+        // Use simpler drawing on mobile for better performance
+        if (this.isMobile) {
+            // Mobile: Simple circles, no gradients
+            for (let particle of this.particles) {
+                const twinkle = Math.sin(time * 2 + particle.twinkleOffset) * 0.3 + 0.7;
+                
+                // Draw outer glow
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(139, 92, 246, ${0.3 * twinkle})`;
+                this.ctx.fill();
+                
+                // Draw white center
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size * 0.5, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${0.9 * twinkle})`;
+                this.ctx.fill();
+            }
+        } else {
+            // Desktop: Full gradient effects
+            for (let particle of this.particles) {
+                // Calculate twinkle effect
+                const twinkle = Math.sin(time * 2 + particle.twinkleOffset) * 0.3 + 0.7;
+                
+                // Draw glow halo
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
+                const gradient = this.ctx.createRadialGradient(
+                    particle.x, particle.y, 0,
+                    particle.x, particle.y, particle.size * 3
+                );
+                gradient.addColorStop(0, `rgba(139, 92, 246, ${0.6 * twinkle})`);
+                gradient.addColorStop(0.3, `rgba(124, 58, 237, ${0.3 * twinkle})`);
+                gradient.addColorStop(1, 'transparent');
+                this.ctx.fillStyle = gradient;
+                this.ctx.fill();
+                
+                // Draw outer glow
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size * 1.5, 0, Math.PI * 2);
+                const outerGradient = this.ctx.createRadialGradient(
+                    particle.x, particle.y, 0,
+                    particle.x, particle.y, particle.size * 1.5
+                );
+                outerGradient.addColorStop(0, `rgba(139, 92, 246, ${0.8 * twinkle})`);
+                outerGradient.addColorStop(1, 'transparent');
+                this.ctx.fillStyle = outerGradient;
+                this.ctx.fill();
+                
+                // Draw white star center
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size * 0.5, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${0.9 * twinkle})`;
+                this.ctx.fill();
+                
+                // Draw bright core
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size * 0.2, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${twinkle})`;
+                this.ctx.fill();
+            }
         }
     }
     
@@ -409,7 +438,13 @@ class ParallaxHandler {
         this.elements = [];
         this.mouse = { x: 0, y: 0 };
         this.targetMouse = { x: 0, y: 0 };
-        this.init();
+        this.isMobile = window.innerWidth <= 768;
+        this.isRunning = !this.isMobile;
+        this.animationId = null;
+        
+        if (this.isRunning) {
+            this.init();
+        }
     }
     
     init() {
@@ -466,6 +501,8 @@ class ParallaxHandler {
     }
     
     animate() {
+        if (!this.isRunning) return;
+        
         // Smooth mouse follow
         this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.1;
         this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.1;
@@ -488,7 +525,7 @@ class ParallaxHandler {
             }
         });
         
-        requestAnimationFrame(() => this.animate());
+        this.animationId = requestAnimationFrame(() => this.animate());
     }
 }
 

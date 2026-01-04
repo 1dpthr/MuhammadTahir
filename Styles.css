@@ -210,6 +210,127 @@ body {
   overflow-x: hidden;
 }
 
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  /* Disable expensive background animations on mobile */
+  body {
+    background-attachment: scroll;
+    animation: none;
+    background-size: 100% 100%;
+  }
+  
+  /* Simplify star field for mobile */
+  .star-field::before,
+  .star-field::after {
+    background-size: 200px 150px;
+    animation: none;
+    opacity: 0.3;
+  }
+  
+  /* Disable shooting stars on mobile */
+  .shooting-stars {
+    display: none;
+  }
+  
+  /* Reduce canvas opacity to improve performance */
+  #particleCanvas {
+    opacity: 0.5;
+  }
+  
+  /* Simplify glass card effects */
+  .glass-card-enhanced {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  
+  /* Reduce section background effects */
+  .section-bg-enhanced .bg-gradient-orb {
+    filter: blur(50px);
+    opacity: 0.15;
+  }
+  
+  /* Reduce hero floating elements */
+  .hero-floating-element {
+    filter: blur(30px);
+    opacity: 0.2;
+  }
+  
+  /* Disable expensive box shadows */
+  .glass-card-enhanced:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: none;
+  }
+  
+  /* Disable card hover lift on mobile */
+  .card-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Simplify button effects */
+  .btn-enhanced::before {
+    display: none;
+  }
+  
+  .btn-enhanced:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Disable pulse glow animation */
+  .animate-pulse-glow {
+    animation: none;
+  }
+  
+  /* Disable gradient text animation */
+  .animate-gradient-text {
+    animation: none;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  
+  /* Disable shimmer animation */
+  .animate-shimmer {
+    animation: none;
+  }
+  
+  /* Simplify scroll indicator */
+  .scroll-indicator {
+    display: none;
+  }
+  
+  /* Reduce avatar glow */
+  .hero-avatar-enhanced::before {
+    animation: none;
+  }
+  
+  /* Disable enhanced divider animation */
+  .section-divider-enhanced {
+    animation: none;
+  }
+}
+
+/* Further optimizations for very small screens */
+@media (max-width: 480px) {
+  /* Even more aggressive optimizations */
+  body {
+    background-image: none;
+  }
+  
+  #particleCanvas {
+    display: none;
+  }
+  
+  .star-field {
+    display: none;
+  }
+  
+  .hero-bg-effects {
+    display: none;
+  }
+}
+
 /* Star Field Background */
 .star-field {
   position: fixed;
