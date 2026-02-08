@@ -10,50 +10,21 @@ import Services from './components/Services';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // Quick loading simulation - hide after components mount
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500); // Very short loading time
-
-    return () => clearTimeout(timer);
-  }, []);
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
 
   return (
     <>
-      {/* Simple loading overlay - fades out quickly */}
-      {isLoading && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100vh',
-          background: 'linear-gradient(135deg, #08080f 0%, #0f0f1f 50%, #1a0f2e 100%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 999999,
-          transition: 'opacity 0.3s ease'
-        }}>
-          <div style={{
-            fontSize: '2rem',
-            fontWeight: 'bold',
-            background: 'linear-gradient(135deg, #a78bfa, #38b6ff)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}>
-            Loading...
-          </div>
-        </div>
-      )}
+      {/* Loading Screen with typing animation */}
+      <LoadingScreen onLoadingComplete={handleLoadingComplete} />
       
-      {/* Main content - always rendered, loading overlay sits on top */}
+      {/* Main content */}
       <Navigation />
       <Hero />
       <About />
