@@ -14,16 +14,16 @@ export default function LoadingScreen() {
 
     const timer = setInterval(() => {
       setDisplayText(prev => prev + fullText[prev.length]);
-    }, 80);
+    }, 120);
 
     return () => clearInterval(timer);
   }, [displayText, fullText]);
 
   useEffect(() => {
-    // Hide loading screen as soon as typing is done
+    // Match the CSS animation timing: 2.3s delay + 0.8s duration = 3.1s total
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 800); // Quick exit after text appears
+    }, 3100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -31,13 +31,20 @@ export default function LoadingScreen() {
   return (
     <>
       {isLoading && (
-        <div className="loading-screen" style={{ animation: 'fadeOutScreen 0.5s ease-out forwards' }}>
+        <div className="loading-screen">
           <div className="loading-container">
             <div className="loading-text-center">
               <h1 className="loading-typed-text">
                 {displayText}
                 {isTyping && <span className="cursor"></span>}
               </h1>
+            </div>
+            <div className="loading-text">
+              <p>Portfolio</p>
+              <div className="loading-bar">
+                <div className="loading-progress"></div>
+              </div>
+              <p className="loading-subtext">Loading Experience...</p>
             </div>
           </div>
         </div>
