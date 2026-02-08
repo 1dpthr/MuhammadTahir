@@ -55,48 +55,6 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-// Immediate CSS loading indicator
-const cssStyle = document.createElement('style')
-cssStyle.textContent = `
-  /* Immediate styles to prevent white flash */
-  body {
-    background: #08080f !important;
-    color: #fff !important;
-  }
-  #root {
-    min-height: 100vh;
-    background: #08080f;
-  }
-  .loading-placeholder {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #08080f 0%, #0f0f1f 50%, #1a0f2e 100%);
-    z-index: 9999;
-  }
-  .loading-placeholder-text {
-    font-size: 2rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #a78bfa, #38b6ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-`
-document.head.appendChild(cssStyle)
-
-// Add loading placeholder immediately
-const loadingDiv = document.createElement('div')
-loadingDiv.className = 'loading-placeholder'
-loadingDiv.innerHTML = '<div class="loading-placeholder-text">dp.thr</div>'
-loadingDiv.id = 'loading-placeholder'
-document.body.prepend(loadingDiv)
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
@@ -104,20 +62,3 @@ createRoot(document.getElementById('root')).render(
     </ErrorBoundary>
   </StrictMode>,
 )
-
-// Set flag and remove loading placeholder after React mounts
-window.__ReactMounted = true
-
-// Remove loading placeholder after React mounts with smooth transition
-setTimeout(() => {
-  const placeholder = document.getElementById('loading-placeholder')
-  if (placeholder && placeholder.parentNode) {
-    placeholder.style.opacity = '0'
-    placeholder.style.transition = 'opacity 0.3s ease'
-    setTimeout(() => {
-      if (placeholder.parentNode) {
-        placeholder.remove()
-      }
-    }, 300)
-  }
-}, 100)
