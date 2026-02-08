@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
@@ -20,14 +19,22 @@ export default function Navigation() {
       }
     };
 
+    // Prevent body scroll when mobile menu is open
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
     window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousedown', handleClickOutside);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
     };
-  }, []);
+  }, [isOpen]);
 
   const navLinks = [
     { name: 'Home', href: '#home' },
@@ -48,39 +55,47 @@ export default function Navigation() {
   };
 
   return (
-    <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="nav-container">
-        <div className="nav-logo">
-          <span className="logo-text">M.TAHIR</span>
+    <>
+      <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-container">
+          <div className="nav-logo">
+            <span className="logo-text">M.TAHIR</span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <ul className="nav-menu">
+            {navLinks.map((link) => (
+              <li key={link.name} className="nav-item">
+                <a
+                  href={link.href}
+                  className="nav-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="hamburger"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <IoClose size={24} /> : <FaBars size={22} />}
+          </button>
         </div>
+      </nav>
 
-        {/* Desktop Navigation */}
-        <ul className="nav-menu">
-          {navLinks.map((link) => (
-            <li key={link.name} className="nav-item">
-              <a
-                href={link.href}
-                className="nav-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.href);
-                }}
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="hamburger"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <IoClose size={24} /> : <FaBars size={22} />}
-        </button>
-      </div>
+      {/* Mobile Overlay */}
+      <div 
+        className={`mobile-overlay ${isOpen ? 'active' : ''}`}
+        onClick={() => setIsOpen(false)}
+      />
 
       {/* Mobile Navigation */}
       <ul className={`mobile-menu ${isOpen ? 'active' : ''}`}>
@@ -99,7 +114,7 @@ export default function Navigation() {
           </li>
         ))}
       </ul>
-    </nav>
+    </>
   );
 }
 
