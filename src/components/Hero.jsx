@@ -11,7 +11,7 @@ export default function Hero() {
 
   // Delay typing until after loading screen finishes
   useEffect(() => {
-    const t = setTimeout(() => setStartTyping(true), 2600);
+    const t = setTimeout(() => setStartTyping(true), 1500); // Start typing after loading screen
     return () => clearTimeout(t);
   }, []);
 
@@ -42,7 +42,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero animate-on-scroll visible">
       <div className="hero-glow"></div>
       <div className="hero-stars"></div>
       <div className="hero-content">
