@@ -105,17 +105,19 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-// Remove loading placeholder after React mounts
-if (window.__ReactMounted) {
-  document.getElementById('loading-placeholder')?.remove()
-} else {
-  // Fallback removal after a delay
-  setTimeout(() => {
-    const placeholder = document.getElementById('loading-placeholder')
-    if (placeholder && placeholder.parentNode) {
-      placeholder.style.opacity = '0'
-      placeholder.style.transition = 'opacity 0.3s ease'
-      setTimeout(() => placeholder.remove(), 300)
-    }
-  }, 100)
-}
+// Set flag and remove loading placeholder after React mounts
+window.__ReactMounted = true
+
+// Remove loading placeholder after React mounts with smooth transition
+setTimeout(() => {
+  const placeholder = document.getElementById('loading-placeholder')
+  if (placeholder && placeholder.parentNode) {
+    placeholder.style.opacity = '0'
+    placeholder.style.transition = 'opacity 0.3s ease'
+    setTimeout(() => {
+      if (placeholder.parentNode) {
+        placeholder.remove()
+      }
+    }, 300)
+  }
+}, 100)
