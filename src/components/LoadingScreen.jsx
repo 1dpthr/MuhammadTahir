@@ -3,6 +3,7 @@ import '../styles/LoadingScreen.css';
 
 export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isFading, setIsFading] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const fullText = 'dp.thr';
 
@@ -20,18 +21,25 @@ export default function LoadingScreen() {
   }, [displayText, fullText]);
 
   useEffect(() => {
-    // Match the CSS animation timing: 2.3s delay + 0.8s duration = 3.1s total
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3100);
+    // Show loading screen for 2.5 seconds, then fade out for 0.5s, then remove
+    const fadeTimer = setTimeout(() => {
+      setIsFading(true);
+    }, 2500);
 
-    return () => clearTimeout(timer);
+    const hideTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(hideTimer);
+    };
   }, []);
 
   return (
     <>
       {isLoading && (
-        <div className="loading-screen">
+        <div className={`loading-screen ${isFading ? 'fade-out' : ''}`}>
           <div className="loading-container">
             <div className="loading-text-center">
               <h1 className="loading-typed-text">
