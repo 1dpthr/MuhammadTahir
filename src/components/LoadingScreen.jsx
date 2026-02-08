@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../styles/LoadingScreen.css';
 
-export default function LoadingScreen() {
+export default function LoadingScreen({ onLoadingComplete }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isFading, setIsFading] = useState(false);
   const [displayText, setDisplayText] = useState('');
@@ -28,13 +28,17 @@ export default function LoadingScreen() {
 
     const hideTimer = setTimeout(() => {
       setIsLoading(false);
+      // Notify parent that loading is complete
+      if (onLoadingComplete) {
+        onLoadingComplete();
+      }
     }, 3000);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
     };
-  }, []);
+  }, [onLoadingComplete]);
 
   return (
     <>

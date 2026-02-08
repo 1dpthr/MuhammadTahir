@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import './styles.css';
 import LoadingScreen from './components/LoadingScreen';
 import Navigation from './components/Navigation';
@@ -12,18 +13,25 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+
   return (
     <>
-      <LoadingScreen />
-      <Navigation />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Services />
-      <Projects />
-      <Contact />
-      <Footer />
+      <LoadingScreen onLoadingComplete={() => setIsLoadingComplete(true)} />
+      
+      {isLoadingComplete && (
+        <>
+          <Navigation />
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Services />
+          <Projects />
+          <Contact />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
