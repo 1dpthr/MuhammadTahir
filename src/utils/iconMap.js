@@ -53,7 +53,6 @@ const ICON_MAP = {
   frontend: FiLayout,
   backend: FiServer,
   tools: FiTool,
-  design: FiPenTool,
   media: FiImage,
 
   // Fallback / misc

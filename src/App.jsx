@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './styles.css';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
@@ -22,18 +22,22 @@ function App() {
   return (
     <>
       {/* Loading Screen with typing animation */}
-      <LoadingScreen onLoadingComplete={handleLoadingComplete} />
-      
-      {/* Main content */}
-      <Navigation />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Services />
-      <Projects />
-      <Contact />
-      <Footer />
+      {isLoading ? (
+        <LoadingScreen onLoadingComplete={handleLoadingComplete} />
+      ) : (
+        <>
+          {/* Main content */}
+          <Navigation />
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Services />
+          <Projects />
+          <Contact />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
