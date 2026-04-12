@@ -1,9 +1,9 @@
 // Portfolio data
 export const portfolioData = {
   name: "Muhammad Tahir",
-  title: "Creative Developer",
-  subtitle: "Software Engineering Student",
-  description: "A passionate Software Engineering student dedicated to creating optimized, user-focused software solutions. I blend technical expertise with creative problem-solving to build applications that make a difference.",
+  title: "Creative & Game Developer",
+  subtitle: "Software Engineering Student | Unity Game Developer",
+  description: "A passionate Software Engineering student dedicated to creating optimized, user-focused software and engaging games with Unity. I blend technical expertise with creative problem-solving to build digital experiences that make a difference.",
   email: "tahiramanat21@gmail.com",
   phone: "+92 123 456 7890",
   resume: "assets/Muhammad_Tahir_Resume.pdf",
@@ -55,6 +55,11 @@ export const portfolioData = {
       category: "Backend",
       icon: "backend",
       items: ["Node.js", "Express", "MongoDB", "SQLite", "REST APIs"]
+    },
+    {
+      category: "Game Development",
+      icon: "software",
+      items: ["Unity", "C#", "2D Game Development", "3D Game Development", "Game Physics", "Level Design"]
     },
     {
       category: "Tools & Platforms",
@@ -113,6 +118,12 @@ export const portfolioData = {
       title: "Web Development",
       description: "Modern, responsive websites and web applications built with the latest technologies.",
       features: ["Frontend Development", "Responsive Design", "Web Performance"]
+    },
+    {
+      icon: "software",
+      title: "Game Development",
+      description: "Interactive games developed with Unity for engaging 2D and 3D player experiences.",
+      features: ["Unity Development", "Gameplay Systems", "UI for Games"]
     },
     {
       icon: "design",

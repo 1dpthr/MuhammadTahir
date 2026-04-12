@@ -27,9 +27,9 @@
 .timeline-dot {
   width: 20px;
   height: 20px;
-  background: linear-gradient(135deg, #a78bfa 0%, #38b6ff 100%);
+  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
   z-index: 1;
 }
 
@@ -43,7 +43,7 @@
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border-radius: var(--radius);
-  border: 1.5px solid rgba(139, 92, 246, 0.15);
+  border: 1.5px solid rgba(6, 182, 212, 0.15);
   padding: 32px;
   position: relative;
   overflow: hidden;
@@ -57,7 +57,7 @@
   right: -50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
   opacity: 0;
   transition: opacity var(--transition-smooth);
 }
@@ -68,8 +68,8 @@
 
 .experience-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(167, 139, 250, 0.3);
-  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.12);
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 15px 40px rgba(6, 182, 212, 0.12);
 }
 
 .experience-header {
@@ -82,7 +82,7 @@
 .experience-icon {
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(56, 182, 255, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%);
   border-radius: 14px;
   display: flex;
   align-items: center;
