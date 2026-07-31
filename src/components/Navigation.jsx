@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import '../styles/Navigation.css';
@@ -7,6 +8,8 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +22,6 @@ export default function Navigation() {
       }
     };
 
-    // Prevent body scroll when mobile menu is open
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -36,22 +38,43 @@ export default function Navigation() {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  const handleScrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (location.pathname === '/') {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', to: '/' },
+    { name: 'About', to: '#about', onClick: (e) => handleScrollToSection(e, 'about') },
+    { name: 'Skills', to: '/skills' },
+    { name: 'Experience', to: '/experience' },
+    { name: 'Services', to: '/services' },
+    { name: 'Projects', to: '/projects' },
+    { name: 'Contact', to: '#contact', onClick: (e) => handleScrollToSection(e, 'contact') }
   ];
 
-  const handleNavClick = (href) => {
-    setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const isActive = (to) => {
+    if (to === '/') return location.pathname === '/';
+    if (to === '#about' || to === '#contact') return false;
+    return location.pathname === to;
   };
 
   return (
@@ -59,28 +82,33 @@ export default function Navigation() {
       <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
           <div className="nav-logo">
-            <span className="logo-text">M.TAHIR</span>
+            <Link to="/" className="logo-text">M.TAHIR</Link>
           </div>
 
-          {/* Desktop Navigation */}
           <ul className="nav-menu">
             {navLinks.map((link) => (
               <li key={link.name} className="nav-item">
-                <a
-                  href={link.href}
-                  className="nav-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                >
-                  {link.name}
-                </a>
+                {link.onClick ? (
+                  <a
+                    href={link.to}
+                    className={`nav-link ${isActive(link.to) ? 'active' : ''}`}
+                    onClick={link.onClick}
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    to={link.to}
+                    className={`nav-link ${isActive(link.to) ? 'active' : ''}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
 
-          {/* Mobile Menu Button */}
           <button
             className="hamburger"
             onClick={() => setIsOpen(!isOpen)}
@@ -91,30 +119,34 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile Overlay */}
       <div 
         className={`mobile-overlay ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Mobile Navigation */}
       <ul className={`mobile-menu ${isOpen ? 'active' : ''}`}>
         {navLinks.map((link) => (
           <li key={link.name} className="mobile-menu-item">
-            <a
-              href={link.href}
-              className="mobile-menu-link"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(link.href);
-              }}
-            >
-              {link.name}
-            </a>
+            {link.onClick ? (
+              <a
+                href={link.to}
+                className="mobile-menu-link"
+                onClick={link.onClick}
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                to={link.to}
+                className="mobile-menu-link"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
     </>
   );
 }
-

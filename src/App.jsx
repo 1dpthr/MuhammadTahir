@@ -1,18 +1,15 @@
-
 import { useState } from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles.css';
 import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Experience from './components/Experience';
-import Services from './components/Services';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
+import HomePage from './pages/HomePage';
+import SkillsPage from './pages/SkillsPage';
+import ExperiencePage from './pages/ExperiencePage';
+import ServicesPage from './pages/ServicesPage';
+import ProjectsPage from './pages/ProjectsPage';
 
-function App() {
+function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadingComplete = () => {
@@ -21,26 +18,30 @@ function App() {
 
   return (
     <>
-      {/* Loading Screen with typing animation */}
       {isLoading ? (
         <LoadingScreen onLoadingComplete={handleLoadingComplete} />
       ) : (
         <>
-          {/* Main content */}
           <Navigation />
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Services />
-          <Projects />
-          <Contact />
-          <Footer />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+          </Routes>
         </>
       )}
     </>
   );
 }
 
-export default App;
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
 
+export default App;

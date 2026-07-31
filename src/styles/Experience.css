@@ -166,6 +166,84 @@
   transform: translateY(-2px);
 }
 
+/* Certificate & LOR Action Buttons */
+.certificate-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid rgba(6, 182, 212, 0.12);
+}
+
+.certificate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1.5px solid rgba(6, 182, 212, 0.3);
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--primary-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.certificate-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.certificate-btn:hover::before {
+  left: 100%;
+}
+
+.certificate-btn:hover {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
+  color: var(--primary);
+}
+
+.certificate-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(6, 182, 212, 0.15);
+}
+
+.certificate-btn-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.lor-btn {
+  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa;
+}
+
+.lor-btn::before {
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.15), transparent);
+}
+
+.lor-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .timeline-item {
@@ -197,6 +275,18 @@
   .experience-meta h3 {
     font-size: 1.2rem;
   }
+
+  .certificate-actions {
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .certificate-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -206,6 +296,11 @@
 
   .skill-tag {
     padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .certificate-btn {
+    padding: 10px 16px;
     font-size: 0.8rem;
   }
 }

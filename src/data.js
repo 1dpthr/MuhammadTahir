@@ -44,7 +44,7 @@ export const portfolioData = {
     {
       category: "Programming Languages",
       icon: "code",
-      items: ["C++", "Java", "Python", "JavaScript"]
+      items: ["C++", "Java", "Python", "JavaScript", "Dart", "C#"]
     },
     {
       category: "Frontend",
@@ -54,7 +54,12 @@ export const portfolioData = {
     {
       category: "Backend",
       icon: "backend",
-      items: ["Node.js", "Express", "MongoDB", "SQLite", "REST APIs"]
+      items: ["Node.js", "Express", "MongoDB", "SQLite", "MySQL", "Firebase", "REST APIs", "Spring Boot"]
+    },
+    {
+      category: "Mobile Development",
+      icon: "smartphone",
+      items: ["Flutter", "Dart", "Firebase", "Cross-Platform Development"]
     },
     {
       category: "Game Development",
@@ -64,7 +69,7 @@ export const portfolioData = {
     {
       category: "Tools & Platforms",
       icon: "tools",
-      items: ["GitHub", "Git", "VS Code", "Figma"]
+      items: ["GitHub", "Git", "VS Code", "Figma", "Docker", "Maven"]
     },
     {
       category: "UI/UX & Design",
@@ -75,6 +80,16 @@ export const portfolioData = {
       category: "Media & Content",
       icon: "media",
       items: ["Adobe Photoshop", "Adobe Premiere Pro", "Video Editing", "Content Creation"]
+    },
+    {
+      category: "Computer Vision & AI",
+      icon: "camera",
+      items: ["MediaPipe", "OpenCV", "TensorFlow", "Hand Tracking", "Gesture Recognition"]
+    },
+    {
+      category: "Operating Systems",
+      icon: "server",
+      items: ["Memory Management", "Process Scheduling", "IPC", "Distributed Systems"]
     }
   ],
 
@@ -84,6 +99,7 @@ export const portfolioData = {
       role: "Software Engineering Intern",
       duration: "October 2025 – December 2025",
       icon: "briefcase",
+      certificate: "assets/Softech Digital Internship.png",
       responsibilities: [
         {
           title: "Front-End Development",
@@ -103,6 +119,33 @@ export const portfolioData = {
         }
       ],
       skills: ["React.js", "HTML5", "CSS3", "JavaScript", "Figma", "UI/UX Design"]
+    },
+    {
+      company: "Code Alpha",
+      role: "Backend Developer Intern",
+      duration: "July 1, 2026 – July 31, 2026",
+      icon: "briefcase",
+      certificate: "assets/Code Alpha Internship.pdf",
+      lor: "assets/Code Alpha LOR.pdf",
+      responsibilities: [
+        {
+          title: "Backend API Development",
+          description: "Designed and implemented RESTful APIs for web applications using Node.js and Express."
+        },
+        {
+          title: "Database Management",
+          description: "Worked with MongoDB for data modeling, querying, and database optimization."
+        },
+        {
+          title: "Server-Side Logic",
+          description: "Developed server-side business logic and middleware for request processing and authentication."
+        },
+        {
+          title: "Collaboration & Deployment",
+          description: "Collaborated with frontend team to integrate APIs and participated in deployment workflows."
+        }
+      ],
+      skills: ["Node.js", "Express", "MongoDB", "REST APIs", "JavaScript", "Git"]
     }
   ],
 
@@ -136,6 +179,18 @@ export const portfolioData = {
       title: "Content Creation",
       description: "Professional video editing and content creation services for digital platforms.",
       features: ["Video Editing", "Motion Graphics", "Brand Content"]
+    },
+    {
+      icon: "mobile",
+      title: "Mobile App Development",
+      description: "Cross-platform mobile applications built with Flutter for Android and iOS.",
+      features: ["Flutter Development", "Cross-Platform Apps", "Mobile UI Design"]
+    },
+    {
+      icon: "ai",
+      title: "AI & Computer Vision",
+      description: "Computer vision solutions leveraging machine learning for gesture recognition and drawing.",
+      features: ["Hand Tracking", "Shape Recognition", "Real-time Processing"]
     }
   ],
 
@@ -227,6 +282,79 @@ export const portfolioData = {
       technologies: ["Figma", "UI Redesign", "Mobile App"],
       links: {
         figma: "https://www.figma.com/proto/2H99Tf0N9GP2YceT1h4fzn/figma-Easypaisa-assignment"
+      }
+    },
+    {
+      id: 8,
+      title: "Ilm Dost",
+      type: "Full Stack Web App",
+      role: "Full Stack Developer",
+      icon: "ilmdost",
+      description: "A comprehensive, privacy-first educational platform powered by fully local AI for student learning, progress tracking, and academic success. Features smart dashboard, AI study assistant, course management, and voice assistant.",
+      technologies: ["React.js", "TypeScript", "Tailwind CSS", "Supabase", "Local AI", "Recharts"],
+      links: {
+        web: "https://1dpthr.github.io/ILM-Dost/",
+        github: "https://github.com/1dpthr/ILM-Dost"
+      }
+    },
+    {
+      id: 9,
+      title: "Traffic Racer",
+      type: "3D Game",
+      role: "Unity Developer",
+      icon: "traffic",
+      description: "A 3D traffic racing game built with Unity featuring endless racing, multiple vehicles, dynamic traffic system, score tracking, and garage system with car selection.",
+      technologies: ["Unity", "C#", "3D Game Development", "TextMesh Pro"],
+      links: {
+        github: "https://github.com/1dpthr/Traffic-Racer"
+      }
+    },
+    {
+      id: 10,
+      title: "AI-Based Air Drawing",
+      type: "Computer Vision",
+      role: "AI Developer",
+      icon: "airdraw",
+      description: "An innovative computer vision application enabling air drawing using hand gestures. Features real-time hand tracking, 12-color palette, AI-powered shape and letter recognition, and gesture-based controls.",
+      technologies: ["Python", "OpenCV", "MediaPipe", "TensorFlow", "Computer Vision"],
+      links: {
+        github: "https://github.com/1dpthr/Ai-Based-Air-Drawing"
+      }
+    },
+    {
+      id: 11,
+      title: "SyncStay",
+      type: "Full Stack Web App",
+      role: "Full Stack Developer",
+      icon: "syncstay",
+      description: "A comprehensive hostel management and roommate matching platform built with Spring Boot. Features intelligent roommate matching, room selection, booking system, and multi-role support for students, owners, and administrators.",
+      technologies: ["Java", "Spring Boot", "MySQL", "Docker", "Maven", "Hibernate"],
+      links: {
+        github: "https://github.com/1dpthr/SyncStay-SCD"
+      }
+    },
+    {
+      id: 12,
+      title: "SyncStay Mobile",
+      type: "Mobile App",
+      role: "Flutter Developer",
+      icon: "syncstaymob",
+      description: "A Flutter-based mobile application for student accommodation management and roommate matching. Features multi-role dashboards, real-time notifications, location services, and payment management.",
+      technologies: ["Flutter", "Dart", "Firebase", "Supabase", "Cross-Platform"],
+      links: {
+        github: "https://github.com/1dpthr/SyncStay-Mobile"
+      }
+    },
+    {
+      id: 13,
+      title: "OS Simulation",
+      type: "Educational Tool",
+      role: "Java Developer",
+      icon: "os",
+      description: "A comprehensive Java-based Operating System simulation project demonstrating core OS concepts including memory management, process scheduling, IPC mechanisms, and distributed systems with interactive GUI visualizations.",
+      technologies: ["Java", "JavaFX", "Swing", "Maven", "Multithreading"],
+      links: {
+        github: "https://github.com/1dpthr/Operating-System-Simulation"
       }
     }
   ]

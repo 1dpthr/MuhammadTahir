@@ -941,6 +941,20 @@ textarea:focus {
   }
 }
 
+@media (max-width: 576px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .section-description {
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 480px) {
   section {
     padding: 80px 0;
@@ -952,6 +966,10 @@ textarea:focus {
 
   h2 {
     font-size: 1.6rem;
+  }
+
+  h4 {
+    font-size: 1rem;
   }
 
   .btn {
@@ -976,6 +994,47 @@ textarea:focus {
   input:focus,
   textarea:focus {
     transform: scale(1.01);
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .btn {
+    padding: 11px 18px;
+    font-size: 0.85rem;
+  }
+
+  .card {
+    padding: 18px;
+    border-radius: 16px;
   }
 }
 

@@ -19,7 +19,12 @@ import {
   FiLayout,
   FiServer,
   FiTool,
-  FiImage
+  FiImage,
+  FiBookOpen,
+  FiMonitor,
+  FiCamera,
+  FiDatabase,
+  FiGrid
 } from 'react-icons/fi';
 
 // Map string keys from data.js to themed icon components (export components, not JSX)
@@ -33,12 +38,20 @@ const ICON_MAP = {
   hangman: FiAward,
   hotel: FiHome,
   easypaisa: FiSmartphone,
+  ilmdost: FiBookOpen,
+  traffic: FiMonitor,
+  airdraw: FiCamera,
+  syncstay: FiDatabase,
+  syncstaymob: FiSmartphone,
+  os: FiGrid,
 
   // Services
   software: FiCpu,
   web: FiGlobe,
   design: FiPenTool,
   content: FiVideo,
+  mobile: FiSmartphone,
+  ai: FiCpu,
 
   // Experience
   briefcase: FiBriefcase,
@@ -54,6 +67,9 @@ const ICON_MAP = {
   backend: FiServer,
   tools: FiTool,
   media: FiImage,
+  smartphone: FiSmartphone,
+  camera: FiCamera,
+  server: FiServer,
 
   // Fallback / misc
   github: FiGithub

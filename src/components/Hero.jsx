@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowRight, FaDownload } from 'react-icons/fa';
 import { portfolioData } from '../data';
 import '../styles/Hero.css';
 
 export default function Hero() {
+  const navigate = useNavigate();
   const [displayText, setDisplayText] = useState('');
   const [imageLoaded, setImageLoaded] = useState(false);
   const fullText = portfolioData.title;
@@ -11,11 +13,11 @@ export default function Hero() {
 
   // Delay typing until after loading screen finishes
   useEffect(() => {
-    const t = setTimeout(() => setStartTyping(true), 1500); // Start typing after loading screen
+    const t = setTimeout(() => setStartTyping(true), 1500);
     return () => clearTimeout(t);
   }, []);
 
-  // Typing animation for main title (starts when `startTyping` is true)
+  // Typing animation for main title
   useEffect(() => {
     if (!startTyping) return;
     if (displayText.length < fullText.length) {
@@ -25,13 +27,6 @@ export default function Hero() {
       return () => clearTimeout(timer);
     }
   }, [displayText, fullText, startTyping]);
-
-  const handleScroll = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleImageLoad = () => {
     setImageLoaded(true);
@@ -77,7 +72,7 @@ export default function Hero() {
         <div className="hero-buttons">
           <button 
             className="btn btn-primary"
-            onClick={() => handleScroll('projects')}
+            onClick={() => navigate('/projects')}
           >
             View Portfolio <FaArrowRight size={16} />
           </button>

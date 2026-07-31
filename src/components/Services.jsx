@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { portfolioData } from '../data';
 import ICON_MAP from '../utils/iconMap';
 import '../styles/Services.css';
@@ -30,9 +31,9 @@ export default function Services() {
                 ))}
               </div>
 
-              <a href="#contact" className="btn btn-outline service-btn">
+              <Link to="/#contact" className="btn btn-outline service-btn">
                 Get Started
-              </a>
+              </Link>
             </div>
           )})}
         </div>

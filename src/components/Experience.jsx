@@ -1,8 +1,41 @@
+import { useState } from 'react';
 import { portfolioData } from '../data';
 import ICON_MAP from '../utils/iconMap';
+import CertificateModal from './CertificateModal';
 import '../styles/Experience.css';
 
 export default function Experience() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalFile, setModalFile] = useState(null);
+  const [modalFileType, setModalFileType] = useState(null);
+  const [modalTitle, setModalTitle] = useState('');
+
+  const openCertificate = (file, type, title) => {
+    setModalFile(file);
+    setModalFileType(type);
+    setModalTitle(title);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setModalFile(null);
+    setModalFileType(null);
+    setModalTitle('');
+  };
+
+  const getFileType = (filePath) => {
+    if (!filePath) return null;
+    const ext = filePath.split('.').pop().toLowerCase();
+    return ['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext) ? 'image' : 'pdf';
+  };
+
+  const getFileName = (filePath) => {
+    if (!filePath) return '';
+    const parts = filePath.split('/');
+    return parts[parts.length - 1];
+  };
+
   return (
     <section id="experience" className="experience">
       <div className="container">
@@ -15,6 +48,13 @@ export default function Experience() {
         <div className="timeline">
           {portfolioData.experience.map((exp, index) => {
             const IconComp = ICON_MAP[exp.icon];
+            const hasCertificate = !!exp.certificate;
+            const hasLor = !!exp.lor;
+            const certFileType = hasCertificate ? getFileType(exp.certificate) : null;
+            const lorFileType = hasLor ? getFileType(exp.lor) : null;
+            const certFileName = hasCertificate ? getFileName(exp.certificate) : '';
+            const lorFileName = hasLor ? getFileName(exp.lor) : '';
+
             return (
             <div key={index} className="timeline-item">
               <div className="timeline-marker">
@@ -51,6 +91,38 @@ export default function Experience() {
                         <span key={skill} className="skill-tag">{skill}</span>
                       ))}
                     </div>
+
+                    {/* Certificate & LOR Buttons */}
+                    {(hasCertificate || hasLor) && (
+                      <div className="certificate-actions">
+                        {hasCertificate && (
+                          <button
+                            className="certificate-btn"
+                            onClick={() => openCertificate(
+                              exp.certificate,
+                              certFileType,
+                              `${exp.company} - Certificate`
+                            )}
+                          >
+                            <span className="certificate-btn-icon">&#128196;</span>
+                            View Certificate
+                          </button>
+                        )}
+                        {hasLor && (
+                          <button
+                            className="certificate-btn lor-btn"
+                            onClick={() => openCertificate(
+                              exp.lor,
+                              lorFileType,
+                              `${exp.company} - Letter of Recommendation`
+                            )}
+                          >
+                            <span className="certificate-btn-icon">&#128220;</span>
+                            View LOR
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -58,6 +130,16 @@ export default function Experience() {
           )})}
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      {modalOpen && modalFile && (
+        <CertificateModal
+          file={modalFile}
+          fileType={modalFileType}
+          title={modalTitle}
+          onClose={closeModal}
+        />
+      )}
     </section>
   );
 }
