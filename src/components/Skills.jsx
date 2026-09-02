@@ -9,7 +9,7 @@ export default function Skills() {
         <div className="section-header">
           <span className="section-number">02.</span>
           <h2 className="section-title">Skills</h2>
-          <p className="section-description">Technical expertise and creative tools I use</p>
+          <p className="section-description">Technologies and tools used across web, mobile, game, and software development</p>
         </div>
 
         <div className="skills-grid">

@@ -31,11 +31,10 @@ export default function CertificateModal({ file, fileType, title, onClose }) {
   };
 
   const isImage = fileType === 'image';
-  // Files are served from public/assets/ via Vite
-  // Encode URI to handle spaces in file names
-  const baseUrl = import.meta.env.BASE_URL || '/';
-  const encodedFile = file.split('/').map(part => encodeURIComponent(part)).join('/');
-  const filePath = `${baseUrl}${encodedFile}`;
+  // Public paths need the Vite base URL; imported asset URLs are already resolved.
+  const filePath = file.startsWith('assets/')
+    ? `${import.meta.env.BASE_URL || '/'}${file.split('/').map(part => encodeURIComponent(part)).join('/')}`
+    : file;
 
   return (
     <div
@@ -89,7 +88,7 @@ export default function CertificateModal({ file, fileType, title, onClose }) {
 
         <div className="certificate-modal-footer">
           <p className="certificate-footer-text">
-            This document is displayed for viewing purposes only. Download is not available.
+            For viewing only. Downloads are unavailable.
           </p>
         </div>
       </div>

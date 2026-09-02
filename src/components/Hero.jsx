@@ -54,7 +54,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="hero-subtitle">HI, I&apos;M {portfolioData.name.toUpperCase()}</p>
+        <p className="hero-subtitle">Hi, I&apos;m {portfolioData.name}</p>
         
         <h1 className="hero-title">
           {displayText}
@@ -74,7 +74,7 @@ export default function Hero() {
             className="btn btn-primary"
             onClick={() => navigate('/projects')}
           >
-            View Portfolio <FaArrowRight size={16} />
+            View Projects <FaArrowRight size={16} />
           </button>
           
           <a href={portfolioData.resume} download className="btn btn-outline">

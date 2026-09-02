@@ -56,8 +56,8 @@ export default function Contact() {
     {
       icon: FaEnvelope,
       label: 'Email',
-      value: 'tahiramanat21@gmail.com',
-      href: `mailto:tahiramanat21@gmail.com`
+      value: portfolioData.email,
+      href: portfolioData.social.email
     },
     {
       icon: FaLinkedin,
@@ -85,12 +85,12 @@ export default function Contact() {
         <div className="section-header">
           <span className="section-number">06.</span>
           <h2 className="section-title">Get In Touch</h2>
-          <p className="section-description">Ready to collaborate? Lets discuss your next project.</p>
+          <p className="section-description">Ready to collaborate? Let&apos;s discuss your next project.</p>
         </div>
 
         <div className="contact-content">
           <form className="contact-form" onSubmit={handleSubmit}>
-            <h3>Send me a message</h3>
+            <h3>Discuss a project</h3>
             
             <div className="form-group">
               <label htmlFor="name">Your Name</label>
@@ -124,7 +124,7 @@ export default function Contact() {
                 id="message"
                 name="message"
                 rows="5"
-                placeholder="Tell me about your project..."
+                placeholder="Tell me about your project or development needs..."
                 value={formState.message}
                 onChange={handleChange}
                 required
@@ -180,13 +180,13 @@ export default function Contact() {
                 </div>
                 <div className="contact-text">
                   <h4>Resume</h4>
-                  <span>Download my CV</span>
+                  <span>Download my resume</span>
                 </div>
               </a>
             </div>
 
             <div className="contact-note">
-              <p>I typically respond within 24 hours. Looking forward to hearing from you!</p>
+              <p>Reach out to discuss software, web, mobile, game, or design work.</p>
             </div>
           </div>
         </div>

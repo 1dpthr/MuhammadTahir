@@ -68,6 +68,7 @@ export default function Navigation() {
     { name: 'Experience', to: '/experience' },
     { name: 'Services', to: '/services' },
     { name: 'Projects', to: '/projects' },
+    { name: 'Certificates', to: '/certificates' },
     { name: 'Contact', to: '#contact', onClick: (e) => handleScrollToSection(e, 'contact') }
   ];
 

@@ -56,7 +56,7 @@ export default function LoadingScreen({ onLoadingComplete }) {
               <div className="loading-bar">
                 <div className="loading-progress"></div>
               </div>
-              <p className="loading-subtext">Loading Experience...</p>
+              <p className="loading-subtext">Loading portfolio...</p>
             </div>
           </div>
         </div>

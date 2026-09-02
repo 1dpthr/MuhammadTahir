@@ -19,7 +19,7 @@ export default function Footer() {
           <div className="footer-main">
             <div className="footer-branding">
               <div className="footer-logo">M.TAHIR</div>
-              <p className="footer-text">Built with passion by Muhammad Tahir</p>
+              <p className="footer-text">Muhammad Tahir | Software Engineering Student</p>
             </div>
 
             <div className="footer-social">
@@ -44,8 +44,8 @@ export default function Footer() {
           <div className="footer-divider"></div>
 
           <div className="footer-bottom">
-            <p>© {currentYear} Muhammad Tahir. Future Software Engineer.</p>
-            <p className="footer-note">Designed & Built with React</p>
+            <p>© {currentYear} Muhammad Tahir. Software Engineering Student | Unity Game Developer.</p>
+            <p className="footer-note">Designed and built with React.</p>
           </div>
         </div>
       </div>

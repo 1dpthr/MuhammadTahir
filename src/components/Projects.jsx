@@ -38,7 +38,7 @@ export default function Projects() {
         <div className="section-header">
           <span className="section-number">05.</span>
           <h2 className="section-title">Projects</h2>
-          <p className="section-description">A selection of my practical projects</p>
+          <p className="section-description">Selected web, mobile, game, design, and software projects</p>
         </div>
 
         <div className="projects-grid">

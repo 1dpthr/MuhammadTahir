@@ -1,16 +1,29 @@
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { portfolioData } from '../data';
 import ICON_MAP from '../utils/iconMap';
 import '../styles/Services.css';
 
 export default function Services() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleContactClick = (event) => {
+    event.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100);
+      return;
+    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="services" className="services">
       <div className="container">
         <div className="section-header">
           <span className="section-number">04.</span>
           <h2 className="section-title">Services</h2>
-          <p className="section-description">Comprehensive software solutions tailored to your needs</p>
+          <p className="section-description">Development, design, mobile, game, content, and computer vision services</p>
         </div>
 
         <div className="services-grid">
@@ -31,9 +44,9 @@ export default function Services() {
                 ))}
               </div>
 
-              <Link to="/#contact" className="btn btn-outline service-btn">
-                Get Started
-              </Link>
+              <a href="#contact" onClick={handleContactClick} className="btn btn-outline service-btn">
+                Discuss this service
+              </a>
             </div>
           )})}
         </div>

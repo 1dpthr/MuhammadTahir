@@ -8,6 +8,7 @@ import SkillsPage from './pages/SkillsPage';
 import ExperiencePage from './pages/ExperiencePage';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
+import CertificatesPage from './pages/CertificatesPage';
 
 function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +30,7 @@ function AppContent() {
             <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/certificates" element={<CertificatesPage />} />
           </Routes>
         </>
       )}

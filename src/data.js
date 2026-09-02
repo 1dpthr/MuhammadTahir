@@ -1,12 +1,34 @@
+import resumeFile from './assets/Muhammad_Tahir_Resume.pdf';
+import cForEveryone from './assets/Certificates/C for Everyone Programming Fundamentals.pdf';
+import cppEssentials from './assets/Certificates/CPA Programming Essentials in C++.pdf';
+import dataStructures from './assets/Certificates/Data Structures.pdf';
+import designPatterns from './assets/Certificates/Design Patterns.pdf';
+import gameDevelopment from './assets/Certificates/Game Development.pdf';
+import softwareEngineering from './assets/Certificates/Introduction to Software Engineering.pdf';
+import objectOrientedDataStructures from './assets/Certificates/Object-Oriented Data Structures in C++.pdf';
+import operatingSystems from './assets/Certificates/Operating Systems Basics.pdf';
+import treesAndGraphs from './assets/Certificates/Trees and Graphs Basics.pdf';
+
 // Portfolio data
 export const portfolioData = {
   name: "Muhammad Tahir",
-  title: "Creative & Game Developer",
-  subtitle: "Software Engineering Student | Unity Game Developer",
-  description: "A passionate Software Engineering student dedicated to creating optimized, user-focused software and engaging games with Unity. I blend technical expertise with creative problem-solving to build digital experiences that make a difference.",
+  title: "Software Engineer & Creative Developer",
+  subtitle: "Software Engineering Student | Web, Mobile & Unity Developer",
+  description: "Software Engineering student building responsive web applications, cross-platform mobile apps, and interactive games. I work with React, Node.js, Flutter, C++, C#, and Unity to turn ideas into practical digital products.",
   email: "tahiramanat21@gmail.com",
-  phone: "+92 123 456 7890",
-  resume: "assets/Muhammad_Tahir_Resume.pdf",
+  resume: resumeFile,
+
+  certificates: [
+    { title: 'Data Structures', issuer: 'University of California San Diego', issueDate: 'Jan 2024', file: dataStructures, detail: 'Essential structures for organizing and processing data efficiently.' },
+    { title: 'Trees and Graphs: Basics', issuer: 'University of Colorado Boulder', issueDate: 'Jan 2024', file: treesAndGraphs, detail: 'Tree and graph structures, traversal, and practical applications.' },
+    { title: 'Design Patterns', issuer: 'University of Alberta', issueDate: 'Dec 2023', file: designPatterns, detail: 'Reusable software design solutions for maintainable applications.' },
+    { title: 'Introduction to Software Engineering', issuer: 'IBM', issueDate: 'Nov 2023', file: softwareEngineering, detail: 'Software development practices, processes, and engineering principles.' },
+    { title: 'Object-Oriented Data Structures in C++', issuer: 'University of Illinois at Urbana-Champaign', issueDate: 'May 2023', file: objectOrientedDataStructures, detail: 'Object-oriented approaches to implementing and using data structures.' },
+    { title: 'CPA: Programming Essentials in C++', issuer: 'Cisco Networking Academy / C++ Institute', issueDate: 'May 2023', file: cppEssentials, detail: 'Core C++ programming concepts and object-oriented techniques.' },
+    { title: 'C for Everyone: Programming Fundamentals', issuer: 'University of California, Santa Cruz', issueDate: 'Jan 2023', file: cForEveryone, detail: 'Programming fundamentals, syntax, and problem-solving with C.' },
+    { title: 'Game Development', issuer: 'Zaff Institute', issueDate: 'Sep 2022', file: gameDevelopment, detail: 'Foundations of game development, gameplay systems, and production.' },
+    { title: 'Operating Systems Basics', issuer: 'Cisco Networking Academy / Riphah International University', issueDate: 'May 2026', file: operatingSystems, detail: 'Core operating system concepts, processes, memory, and file systems.' }
+  ],
   
   social: {
     github: "https://github.com/1dpthr",
@@ -17,9 +39,9 @@ export const portfolioData = {
 
   about: {
     intro: [
-      "I'm a passionate Software Engineering student who thrives on turning complex problems into elegant digital solutions. My journey in tech began with curiosity about how things work, and has evolved into a deep commitment to creating software that genuinely improves people's lives.",
-      "Currently pursuing my degree in Software Engineering, I'm building a strong foundation in computer science fundamentals while staying current with modern development practices. I believe in the power of clean, efficient code and user-centered design.",
-      "When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or working on personal projects that challenge me to grow as a developer."
+      "I'm Muhammad Tahir, a Software Engineering student focused on building useful and engaging digital experiences. My portfolio combines full-stack web development, cross-platform mobile apps, Unity games, and user-centered interface design.",
+      "I have worked with React.js and Vite on front-end experiences, Node.js and Express on backend APIs, Flutter for mobile development, and C++ and C# for software and game projects. My work also includes Figma prototypes, database systems, and computer vision experiments with OpenCV and MediaPipe.",
+      "Through academic projects, internships, and independent work, I'm developing the skills to design, build, and improve software from idea to implementation. I value clear interfaces, efficient code, and continuous learning."
     ],
     cards: [
       {
@@ -30,12 +52,12 @@ export const portfolioData = {
       {
         icon: "mission",
         title: "Mission",
-        description: "To create innovative software solutions that bridge the gap between complex technology and user-friendly experiences."
+        description: "To build practical software that combines reliable engineering with clear, user-friendly experiences."
       },
       {
         icon: "focus",
         title: "Current Focus",
-        description: "Expanding knowledge in modern web technologies, data structures & algorithms, and open-source contributions."
+        description: "Building stronger full-stack, Flutter, Unity, and computer vision projects while deepening my software engineering fundamentals."
       }
     ]
   },

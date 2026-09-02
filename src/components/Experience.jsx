@@ -30,19 +30,13 @@ export default function Experience() {
     return ['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext) ? 'image' : 'pdf';
   };
 
-  const getFileName = (filePath) => {
-    if (!filePath) return '';
-    const parts = filePath.split('/');
-    return parts[parts.length - 1];
-  };
-
   return (
     <section id="experience" className="experience">
       <div className="container">
         <div className="section-header">
           <span className="section-number">03.</span>
           <h2 className="section-title">Experience</h2>
-          <p className="section-description">Professional journey and key projects</p>
+          <p className="section-description">Internship experience in front-end and backend development</p>
         </div>
 
         <div className="timeline">
@@ -52,8 +46,6 @@ export default function Experience() {
             const hasLor = !!exp.lor;
             const certFileType = hasCertificate ? getFileType(exp.certificate) : null;
             const lorFileType = hasLor ? getFileType(exp.lor) : null;
-            const certFileName = hasCertificate ? getFileName(exp.certificate) : '';
-            const lorFileName = hasLor ? getFileName(exp.lor) : '';
 
             return (
             <div key={index} className="timeline-item">
@@ -73,7 +65,7 @@ export default function Experience() {
                   </div>
 
                   <div className="experience-content">
-                    <h4>Key Responsibilities</h4>
+                    <h4>Responsibilities</h4>
                     <ul className="responsibilities-list">
                       {exp.responsibilities.map((item, idx) => (
                         <li key={idx}>
@@ -118,7 +110,7 @@ export default function Experience() {
                             )}
                           >
                             <span className="certificate-btn-icon">&#128220;</span>
-                            View LOR
+                            View Letter of Recommendation
                           </button>
                         )}
                       </div>
