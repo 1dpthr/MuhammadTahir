@@ -1,57 +1,44 @@
-import React, { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './styles.css'
-import App from './App.jsx'
+import { Component, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
 
-// Error boundary component
-class ErrorBoundary extends React.Component {
+// Signals that JS is running. Every scroll-reveal hidden state in CSS is
+// scoped to `.js [data-reveal]`, so if this file never executes (JS error,
+// blocked script, crawler without JS) the content renders plainly visible
+// instead of staying stuck at opacity 0.
+document.documentElement.classList.add('js');
+
+/** Keeps a render-time crash from presenting as a blank black page. */
+class ErrorBoundary extends Component {
   constructor(props) {
-    super(props)
-    this.state = { hasError: false, error: null }
+    super(props);
+    this.state = { error: null };
   }
 
   static getDerivedStateFromError(error) {
-    return { hasError: true, error }
+    return { error };
   }
 
-  componentDidCatch(error, errorInfo) {
-    console.error('React Error Boundary caught an error:', error, errorInfo)
+  componentDidCatch(error, info) {
+    console.error('Portfolio crashed:', error, info);
   }
 
   render() {
-    if (this.state.hasError) {
-      return (
-        <div style={{
-          minHeight: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: '#08080f',
-          color: '#fff',
-          flexDirection: 'column',
-          gap: '20px',
-          padding: '20px'
-        }}>
-          <h1 style={{ fontSize: '2rem', color: '#06b6d4' }}>Something went wrong</h1>
-          <p style={{ color: '#d4d4d8' }}>Error: {this.state.error?.message || 'Unknown error'}</p>
-          <button 
-            onClick={() => window.location.reload()}
-            style={{
-              padding: '12px 24px',
-              background: 'linear-gradient(135deg, #06b6d4, #0d9488)',
-              border: 'none',
-              borderRadius: '8px',
-              color: '#fff',
-              cursor: 'pointer',
-              fontWeight: 'bold'
-            }}
-          >
-            Reload Page
-          </button>
-        </div>
-      )
-    }
-    return this.props.children
+    if (!this.state.error) return this.props.children;
+
+    return (
+      <div className="crash">
+        <h1>Something went wrong</h1>
+        <p>{this.state.error.message}</p>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => window.location.reload()}
+        >
+          Reload page
+        </button>
+      </div>
+    );
   }
 }
 
@@ -60,5 +47,5 @@ createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
-  </StrictMode>,
-)
+  </StrictMode>
+);

@@ -1,7 +1,5 @@
-import React from 'react';
 import {
   FiGlobe,
-  FiCode,
   FiActivity,
   FiLayers,
   FiAward,
@@ -11,11 +9,10 @@ import {
   FiPenTool,
   FiVideo,
   FiBriefcase,
-  FiGithub,
   FiTarget,
   FiEye,
   FiTrendingUp,
-  FiCode as FiCodeIcon,
+  FiCode,
   FiLayout,
   FiServer,
   FiTool,
@@ -27,8 +24,8 @@ import {
   FiGrid
 } from 'react-icons/fi';
 
-// Map string keys from data.js to themed icon components (export components, not JSX)
-// Using consistent Feather Icons (Fi) style throughout
+// Maps the string icon keys used in data.js to Feather icon components.
+// One consistent icon set across the whole site.
 const ICON_MAP = {
   // Projects
   personal: FiGlobe,
@@ -62,17 +59,14 @@ const ICON_MAP = {
   focus: FiEye,
 
   // Skills
-  code: FiCodeIcon,
+  code: FiCode,
   frontend: FiLayout,
   backend: FiServer,
   tools: FiTool,
   media: FiImage,
   smartphone: FiSmartphone,
   camera: FiCamera,
-  server: FiServer,
-
-  // Fallback / misc
-  github: FiGithub
+  server: FiServer
 };
 
 export default ICON_MAP;

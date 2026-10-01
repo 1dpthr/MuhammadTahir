@@ -1,32 +1,45 @@
 import { portfolioData } from '../data';
 import ICON_MAP from '../utils/iconMap';
+import Reveal from './Reveal';
+import { stagger } from '../utils/reveal';
+import SectionHeader from './SectionHeader';
 import '../styles/Skills.css';
 
 export default function Skills() {
   return (
     <section id="skills" className="skills">
       <div className="container">
-        <div className="section-header">
-          <span className="section-number">02.</span>
-          <h2 className="section-title">Skills</h2>
-          <p className="section-description">Technologies and tools used across web, mobile, game, and software development</p>
-        </div>
+        <SectionHeader
+          number="02 — Skills"
+          title="Skills"
+          description="Technologies and tools across web, mobile, game, and software development."
+        />
 
         <div className="skills-grid">
-          {portfolioData.skills.map((skillGroup) => {
+          {portfolioData.skills.map((skillGroup, i) => {
             const IconComp = ICON_MAP[skillGroup.icon];
             return (
-              <div key={skillGroup.category} className="skill-card">
-                <div className="skill-icon">{IconComp ? <IconComp /> : null}</div>
-                <h3>{skillGroup.category}</h3>
-                <div className="skill-badges">
+              <Reveal
+                key={skillGroup.category}
+                className="card card-sweep skill-card"
+                variant="up"
+                delay={stagger(i, 70)}
+              >
+                <div className="skill-card-head">
+                  <div className="icon-tile">
+                    {IconComp ? <IconComp size={20} /> : null}
+                  </div>
+                  <h3>{skillGroup.category}</h3>
+                </div>
+
+                <div className="tag-row">
                   {skillGroup.items.map((skill) => (
-                    <span key={skill} className="skill-badge">
+                    <span key={skill} className="tag">
                       {skill}
                     </span>
                   ))}
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

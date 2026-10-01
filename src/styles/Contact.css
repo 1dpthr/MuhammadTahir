@@ -1,281 +1,155 @@
-/* ================================================
-   CONTACT SECTION - ENGAGEMENT
-   ================================================ */
+/* =============================================================
+   CONTACT
+   ============================================================= */
 
-.contact {
-  padding: 100px 0;
-  background: linear-gradient(135deg, rgba(15, 15, 26, 0.8) 0%, rgba(5, 5, 16, 1) 100%);
-}
-
-.contact-content {
+.contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 20px;
   align-items: start;
-  max-width: 1100px;
-  margin: 0 auto;
 }
 
 .contact-form {
-  background: linear-gradient(135deg, rgba(20, 20, 40, 0.6) 0%, rgba(30, 25, 50, 0.5) 100%);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 40px;
-  border: 1px solid rgba(124, 58, 237, 0.15);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  transition: all var(--transition-smooth);
-}
-
-.contact-form::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.5), transparent);
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-.contact-form:hover {
-  border-color: rgba(6, 182, 212, 0.3);
-  box-shadow: 0 15px 40px rgba(6, 182, 212, 0.12);
-}
-
-@keyframes shimmer {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+  padding: clamp(24px, 3vw, 38px);
 }
 
 .contact-form h3 {
-  font-size: 1.4rem;
-  margin-bottom: 30px;
-  color: var(--text-primary);
-  position: relative;
-  z-index: 1;
+  font-size: 1.25rem;
+  margin-bottom: 26px;
+}
+
+/* `display: flex` + `column` on the form guarantees each `.form-group` is a
+   real block box. Without this, an inline `<label>` sits on the same line as
+   its input — which is exactly how the form rendered before the CSS was
+   repaired. */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
-  margin-bottom: 25px;
-  position: relative;
-  z-index: 1;
-}
-
-.form-group label {
   display: block;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-  transition: color var(--transition-base);
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 1rem;
-  transition: all var(--transition-base);
-  resize: none;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  background: rgba(124, 58, 237, 0.1);
-  box-shadow: 
-    0 0 0 3px rgba(124, 58, 237, 0.15),
-    inset 0 0 10px rgba(124, 58, 237, 0.05);
-  transform: translateY(-2px);
+  margin-bottom: 20px;
 }
 
 .form-group textarea {
   min-height: 150px;
-  line-height: 1.6;
 }
 
+.contact-submit {
+  border-radius: var(--r-md);
+  margin-top: 4px;
+  align-self: stretch;
+}
+
+/* Status line reserves its own height so the layout never jumps */
 .form-message {
-  margin-top: 20px;
-  padding: 15px 20px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  animation: slideInUp 0.3s ease-out;
+  min-height: 1.2em;
+  margin-top: 14px;
+  font-size: 0.88rem;
+  color: var(--c-text-3);
 }
 
-.form-message.success {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  border-left: 3px solid #10b981;
+.form-message.is-ok {
+  color: var(--c-text);
 }
 
-.form-message.error {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-  border-left: 3px solid #ef4444;
+.form-message.is-error {
+  color: var(--c-text-2);
 }
 
-.contact-form .btn {
-  width: 100%;
-  justify-content: center;
-  margin-top: 10px;
+.contact-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
-.contact-info {
+/* --- side column --- */
+.contact-side {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 16px;
 }
 
 .contact-links {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .contact-link {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 20px;
-  background: linear-gradient(135deg, rgba(20, 20, 40, 0.5), rgba(30, 25, 50, 0.4));
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  transition: all var(--transition-smooth);
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: var(--r-md);
+  min-width: 0;
 }
 
-.contact-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
-  transition: left var(--transition-smooth);
-}
-
+/* The link is itself the card, so it needs its own lift. Declared with the
+   same specificity as `.card:hover` but later in source order, so this wins. */
 .contact-link:hover {
-  border-color: var(--primary);
-  transform: translateX(10px) translateY(-2px);
-  background: rgba(124, 58, 237, 0.08);
-  box-shadow: 
-    0 12px 30px rgba(124, 58, 237, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-3px);
 }
 
-.contact-link:hover::before {
-  left: 100%;
-}
-
-.contact-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
+.contact-text {
+  min-width: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(124, 58, 237, 0.15);
-  color: var(--primary);
-  flex-shrink: 0;
-  transition: all var(--transition-base);
-  border: 1.5px solid rgba(124, 58, 237, 0.2);
-  position: relative;
-  z-index: 1;
-}
-
-.contact-link:hover .contact-icon {
-  background: linear-gradient(135deg, #0d9488, #06b6d4);
-  border-color: var(--primary);
-  color: white;
-  transform: scale(1.1) rotate(-5deg);
+  flex-direction: column;
+  gap: 2px;
 }
 
 .contact-text h4 {
-  color: var(--text-primary);
-  margin-bottom: 3px;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .contact-text span {
-  color: var(--text-secondary);
+  font-size: 0.85rem;
+  color: var(--c-text-4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-arrow {
+  margin-left: auto;
+  color: var(--c-text-4);
   font-size: 0.9rem;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.contact-link:hover .contact-arrow {
+  transform: translate(2px, -2px);
 }
 
 .contact-note {
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.2);
-  border-radius: var(--radius-sm);
   padding: 20px;
-  text-align: center;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  background: var(--c-panel);
 }
 
 .contact-note p {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  margin: 0;
+  font-size: 0.9rem;
+  color: var(--c-text-3);
 }
 
-/* ============ RESPONSIVE ============ */
-
-@media (max-width: 1024px) {
-  .contact-content {
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 900px) {
+  .contact-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
   }
 }
 
-@media (max-width: 768px) {
-  .contact {
-    padding: 60px 0;
-  }
-
-  .contact-content {
-    gap: 30px;
-  }
-
-  .contact-form {
-    padding: 30px;
-  }
-
-  .contact-form h3 {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .contact {
-    padding: 50px 0;
-  }
-
-  .contact-form {
-    padding: 24px;
-  }
-
+@media (max-width: 640px) {
   .contact-link {
-    padding: 16px;
+    padding: 14px;
     gap: 12px;
   }
 
-  .contact-icon {
-    width: 40px;
-    height: 40px;
+  .contact-text span {
+    font-size: 0.8rem;
   }
 }
 

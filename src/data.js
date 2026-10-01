@@ -1,4 +1,7 @@
 import resumeFile from './assets/Muhammad_Tahir_Resume.pdf';
+import softechCertificate from './assets/Softech Digital Internship.png';
+import codeAlphaCertificate from './assets/Code Alpha Internship.pdf';
+import codeAlphaLor from './assets/Code Alpha LOR.pdf';
 import cForEveryone from './assets/Certificates/C for Everyone Programming Fundamentals.pdf';
 import cppEssentials from './assets/Certificates/CPA Programming Essentials in C++.pdf';
 import dataStructures from './assets/Certificates/Data Structures.pdf';
@@ -121,7 +124,7 @@ export const portfolioData = {
       role: "Software Engineering Intern",
       duration: "October 2025 – December 2025",
       icon: "briefcase",
-      certificate: "assets/Softech Digital Internship.png",
+      certificate: softechCertificate,
       responsibilities: [
         {
           title: "Front-End Development",
@@ -147,8 +150,8 @@ export const portfolioData = {
       role: "Backend Developer Intern",
       duration: "July 1, 2026 – July 31, 2026",
       icon: "briefcase",
-      certificate: "assets/Code Alpha Internship.pdf",
-      lor: "assets/Code Alpha LOR.pdf",
+      certificate: codeAlphaCertificate,
+      lor: codeAlphaLor,
       responsibilities: [
         {
           title: "Backend API Development",

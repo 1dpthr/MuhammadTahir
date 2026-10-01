@@ -1,307 +1,169 @@
-/* ================================================
-   EXPERIENCE SECTION STYLES
-   ================================================ */
-
-.experience {
-  position: relative;
-}
+/* =============================================================
+   EXPERIENCE — vertical timeline
+   ============================================================= */
 
 .timeline {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 940px;
+  margin-inline: auto;
 }
 
 .timeline-item {
-  display: flex;
-  gap: 30px;
-  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: clamp(18px, 2.6vw, 32px);
 }
 
-.timeline-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Rail: one continuous hairline with a node per entry */
+.timeline-rail {
   position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.timeline-rail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  width: 1px;
+  background: var(--c-line);
+}
+
+.timeline-item:last-child .timeline-rail::before {
+  bottom: auto;
+  height: 24px;
 }
 
 .timeline-dot {
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  position: relative;
   z-index: 1;
+  width: 9px;
+  height: 9px;
+  margin-top: 26px;
+  border-radius: 50%;
+  background: var(--c-base);
+  border: 1.5px solid var(--c-text-3);
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
 }
 
-.timeline-content {
-  flex: 1;
-  padding-bottom: 50px;
+.timeline-item:hover .timeline-dot {
+  background: var(--c-text);
+  border-color: var(--c-text);
 }
 
 .experience-card {
-  background: rgba(15, 15, 31, 0.5);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border-radius: var(--radius);
-  border: 1.5px solid rgba(6, 182, 212, 0.15);
-  padding: 32px;
-  position: relative;
-  overflow: hidden;
-  transition: all var(--transition-smooth);
-}
-
-.experience-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity var(--transition-smooth);
-}
-
-.experience-card:hover::before {
-  opacity: 1;
-}
-
-.experience-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(6, 182, 212, 0.3);
-  box-shadow: 0 15px 40px rgba(6, 182, 212, 0.12);
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .experience-header {
   display: flex;
-  gap: 20px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.experience-icon {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%);
-  border-radius: 14px;
+.experience-meta {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--primary);
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
 }
 
 .experience-meta h3 {
-  font-size: 1.4rem;
-  margin-bottom: 6px;
-  color: var(--text-primary);
+  font-size: 1.2rem;
 }
 
 .experience-role {
-  display: block;
-  font-size: 1rem;
-  color: var(--primary);
-  font-weight: 600;
-  margin-bottom: 4px;
+  font-size: 0.95rem;
+  color: var(--c-text-2);
 }
 
 .experience-duration {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-size: 0.68rem;
 }
 
-.experience-content h4 {
-  font-size: 1rem;
-  color: var(--text-primary);
-  margin-bottom: 16px;
+.experience-subhead {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  color: var(--c-text-4);
+  margin-top: 6px;
 }
 
 .responsibilities-list {
-  list-style: none;
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .responsibilities-list li {
   display: flex;
   gap: 12px;
-  margin-bottom: 14px;
-  color: var(--text-secondary);
+  font-size: 0.94rem;
   line-height: 1.7;
+  color: var(--c-text-3);
 }
 
-.responsibilities-list .bullet {
-  color: var(--primary);
-  font-weight: bold;
-  font-size: 1.2rem;
-  line-height: 1;
+.bullet {
+  flex: 0 0 auto;
+  width: 5px;
+  height: 5px;
+  margin-top: 11px;
+  background: var(--c-text-2);
+  transform: rotate(45deg);
 }
 
-.responsibilities-list strong {
-  color: var(--text-primary);
-}
-
-.skill-tags {
+.certificate-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.skill-tag {
-  background: rgba(139, 92, 246, 0.15);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  color: var(--text-primary);
-  transition: all var(--transition-fast);
-}
-
-.skill-tag:hover {
-  background: rgba(139, 92, 246, 0.25);
-  border-color: rgba(139, 92, 246, 0.5);
-  transform: translateY(-2px);
-}
-
-/* Certificate & LOR Action Buttons */
-.certificate-actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-  padding-top: 20px;
-  border-top: 1px solid rgba(6, 182, 212, 0.12);
+  padding-top: 16px;
+  border-top: 1px solid var(--c-line-soft);
 }
 
 .certificate-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  border: 1.5px solid rgba(6, 182, 212, 0.3);
-  background: rgba(6, 182, 212, 0.1);
-  color: var(--primary-light);
-  position: relative;
-  overflow: hidden;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  border-radius: var(--r-md);
 }
 
-.certificate-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.15), transparent);
-  transition: left 0.5s ease;
-}
-
-.certificate-btn:hover::before {
-  left: 100%;
-}
-
-.certificate-btn:hover {
-  background: rgba(6, 182, 212, 0.2);
-  border-color: rgba(6, 182, 212, 0.6);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.2);
-  color: var(--primary);
-}
-
-.certificate-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 5px 15px rgba(6, 182, 212, 0.15);
-}
-
-.certificate-btn-icon {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.lor-btn {
-  border-color: rgba(139, 92, 246, 0.3);
-  background: rgba(139, 92, 246, 0.1);
-  color: #a78bfa;
-}
-
-.lor-btn::before {
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.15), transparent);
-}
-
-.lor-btn:hover {
-  background: rgba(139, 92, 246, 0.2);
-  border-color: rgba(139, 92, 246, 0.6);
-  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
-  color: #c4b5fd;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 640px) {
   .timeline-item {
-    flex-direction: column;
-    gap: 15px;
+    grid-template-columns: 14px minmax(0, 1fr);
+    gap: 14px;
   }
 
-  .timeline-marker {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .experience-card {
-    padding: 24px;
+  .timeline-dot {
+    margin-top: 22px;
   }
 
   .experience-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .experience-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
+    gap: 12px;
   }
 
   .experience-meta h3 {
-    font-size: 1.2rem;
+    font-size: 1.08rem;
+  }
+
+  .responsibilities-list li {
+    font-size: 0.9rem;
   }
 
   .certificate-actions {
-    gap: 12px;
     flex-direction: column;
   }
 
   .certificate-btn {
     width: 100%;
-    justify-content: center;
-    padding: 12px 20px;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .skill-tags {
-    gap: 8px;
-  }
-
-  .skill-tag {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-
-  .certificate-btn {
-    padding: 10px 16px;
-    font-size: 0.8rem;
   }
 }
 

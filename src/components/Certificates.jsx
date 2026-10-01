@@ -1,50 +1,63 @@
 import { useState } from 'react';
-import { FiAward, FiEye } from 'react-icons/fi';
+import { FiEye } from 'react-icons/fi';
 import CertificateModal from './CertificateModal';
+import Reveal from './Reveal';
+import { stagger } from '../utils/reveal';
+import SectionHeader from './SectionHeader';
 import { portfolioData } from '../data';
 import '../styles/Certificates.css';
 
 export default function Certificates() {
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [selected, setSelected] = useState(null);
 
   return (
-    <section className="certificates">
+    <section id="certificates" className="certificates">
       <div className="container">
-        <div className="section-header">
-          <span className="section-number">07.</span>
-          <h1 className="section-title">Certificates</h1>
-          <p className="section-description">Courses and credentials in software engineering, data structures, operating systems, and game development</p>
-        </div>
+        <SectionHeader
+          number="07 — Certificates"
+          title="Certificates"
+          description="Courses and credentials in software engineering, data structures, operating systems, and game development."
+        />
 
         <div className="certificates-grid">
           {portfolioData.certificates.map((certificate, index) => (
-            <article className="certificate-card" key={certificate.title} style={{ '--certificate-delay': `${index * 60}ms` }}>
-              <div className="certificate-card-icon"><FiAward /></div>
-              <div className="certificate-card-content">
-                <div className="certificate-card-meta">
-                  <p className="certificate-issuer">{certificate.issuer}</p>
-                  <p className="certificate-date">{certificate.issueDate}</p>
-                </div>
-                <h2>{certificate.title}</h2>
-                <p className="certificate-detail">{certificate.detail}</p>
-                <button
-                  className="certificate-view-btn"
-                  onClick={() => setSelectedCertificate(certificate)}
-                >
-                  <FiEye /> View Certificate
-                </button>
+            <Reveal
+              key={certificate.title}
+              className="card card-sweep certificate-card"
+              variant="up"
+              delay={stagger(index, 55)}
+            >
+              <div className="certificate-card-meta">
+                <span className="mono certificate-issuer">
+                  {certificate.issuer}
+                </span>
+                <span className="mono certificate-date">
+                  {certificate.issueDate}
+                </span>
               </div>
-            </article>
+
+              <h3>{certificate.title}</h3>
+              <p className="certificate-detail">{certificate.detail}</p>
+
+              <button
+                type="button"
+                className="btn btn-outline certificate-view-btn"
+                onClick={() => setSelected(certificate)}
+              >
+                <FiEye size={15} aria-hidden="true" />
+                View Certificate
+              </button>
+            </Reveal>
           ))}
         </div>
       </div>
 
-      {selectedCertificate && (
+      {selected && (
         <CertificateModal
-          file={selectedCertificate.file}
+          file={selected.file}
           fileType="pdf"
-          title={selectedCertificate.title}
-          onClose={() => setSelectedCertificate(null)}
+          title={selected.title}
+          onClose={() => setSelected(null)}
         />
       )}
     </section>

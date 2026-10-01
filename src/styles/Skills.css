@@ -1,192 +1,54 @@
-/* ================================================
-   SKILLS SECTION - PREMIUM CARDS
-   ================================================ */
+/* =============================================================
+   SKILLS
+   ============================================================= */
 
-.skills {
-  padding: 100px 0;
-  background: linear-gradient(135deg, rgba(5, 5, 16, 1) 0%, rgba(15, 15, 26, 0.8) 100%);
-}
-
+/* `min()` floor is what makes this safe on narrow phones.
+   A bare `minmax(290px, 1fr)` computes a 290px track even when the
+   container is only 284px wide, which overflows the grid and hands the
+   whole page a horizontal scrollbar. Clamping the floor to 100% lets the
+   single column shrink to fit instead. */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr));
+  gap: 16px;
 }
 
 .skill-card {
-  background: linear-gradient(135deg, rgba(20, 20, 40, 0.7) 0%, rgba(30, 25, 50, 0.5) 100%);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 35px;
-  border: 1px solid rgba(124, 58, 237, 0.15);
-  transition: all var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.6), transparent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-smooth);
-  z-index: 1;
-}
-
-.skill-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.1), transparent);
-  opacity: 0;
-  transition: opacity var(--transition-smooth);
-  pointer-events: none;
-}
-
-.skill-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  border-color: var(--primary);
-  box-shadow: 
-    0 25px 50px rgba(124, 58, 237, 0.2),
-    0 0 40px rgba(124, 58, 237, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.skill-card:hover::before {
-  transform: scaleX(1);
-}
-
-.skill-card:hover::after {
-  opacity: 1;
-}
-
-.skill-icon {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%);
-  border-radius: 14px;
+.skill-card-head {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--primary);
-  flex-shrink: 0;
-  transition: all var(--transition-smooth);
-}
-
-.skill-card:hover .skill-icon {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+  gap: 14px;
 }
 
 .skill-card h3 {
-  font-size: 1.3rem;
-  color: var(--text-primary);
-  margin: 0;
-  position: relative;
-  z-index: 1;
+  font-size: 1.1rem;
 }
 
-.skill-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  position: relative;
-  z-index: 1;
-}
-
-.skill-badge {
-  display: inline-block;
-  background: rgba(124, 58, 237, 0.12);
-  color: var(--primary-light);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border: 1px solid rgba(124, 58, 237, 0.2);
-  transition: all var(--transition-base);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-badge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-  pointer-events: none;
-}
-
-.skill-badge:hover {
-  background: rgba(124, 58, 237, 0.25);
-  border-color: var(--primary);
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25);
-}
-
-.skill-badge:hover::before {
-  opacity: 1;
-}
-
-/* ============ RESPONSIVE ============ */
-
-@media (max-width: 1024px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-}
-
-@media (max-width: 768px) {
-  .skills {
-    padding: 60px 0;
-  }
-
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 640px) {
   .skills-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 14px;
   }
 
   .skill-card {
-    padding: 28px;
+    gap: 16px;
   }
 
   .skill-card h3 {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .skills {
-    padding: 50px 0;
+    font-size: 1.02rem;
   }
 
-  .skill-card {
-    padding: 24px;
-  }
-
-  .skill-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
-  }
-
-  .skill-badge {
-    font-size: 0.8rem;
-    padding: 6px 12px;
+  .tag {
+    font-size: 0.66rem;
+    padding: 4px 9px;
   }
 }
 

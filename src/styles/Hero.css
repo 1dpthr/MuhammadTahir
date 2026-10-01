@@ -1,227 +1,388 @@
-/* ================================================
-   HERO SECTION STYLES
-   ================================================ */
+/* =============================================================
+   HERO — split layout, mask-reveal headline, scroll parallax
+   ============================================================= */
 
 .hero {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 100px 24px;
+  padding-top: calc(var(--nav-h) + 48px);
+  padding-bottom: 72px;
+  overflow: clip;
 }
 
-.hero-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-stars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.3), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.2), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.3), transparent),
-    radial-gradient(2px 2px at 130px 80px, rgba(255, 255, 255, 0.2), transparent),
-    radial-gradient(1px 1px at 160px 120px, rgba(255, 255, 255, 0.3), transparent);
-  background-repeat: repeat;
-  background-size: 200px 200px;
-  pointer-events: none;
-  z-index: 0;
-  animation: twinkle 8s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-.hero-content {
-  text-align: center;
-  max-width: 900px;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-avatar {
-  margin-bottom: 40px;
-}
-
-.avatar-wrapper {
-  width: 180px;
-  height: 180px;
-  margin: 0 auto;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid rgba(6, 182, 212, 0.3);
-  box-shadow: 
-    0 0 40px rgba(6, 182, 212, 0.3),
-    0 0 80px rgba(14, 165, 233, 0.2);
-  position: relative;
-}
-
-.avatar-wrapper img {
+.hero-inner {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
-.avatar-fallback {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  font-weight: 800;
-  color: white;
-}
-
-.hero-subtitle {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-
-.hero-title {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 800;
-  background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 20px;
-  letter-spacing: -2px;
-  line-height: 1.1;
-}
-
-.hero-title .cursor {
-  height: 3.5rem;
-  vertical-align: middle;
-}
-
-.hero-subtitle-alt {
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
-  font-weight: 600;
-  background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 24px;
-}
-
-.hero-description {
-  max-width: 650px;
-  margin: 0 auto 40px;
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 60px;
-}
-
-.hero-scroll {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+/* Faint vertical rules — editorial grid, no images, no repaint */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to right,
+    var(--c-line-soft) 1px,
+    transparent 1px
+  );
+  background-size: calc(100% / 4) 100%;
   opacity: 0.6;
 }
 
-.hero-scroll .mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 13px;
+.hero-grid {
   position: relative;
+  display: grid;
+  /* Text gets the larger share; the portrait column is capped separately so
+     the image can never squeeze the headline into an awkward wrap. */
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
 }
 
-.hero-scroll .mouse::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 8px;
-  background: linear-gradient(180deg, #06b6d4, #0ea5e9);
-  border-radius: 2px;
-  animation: scroll 2s ease-in-out infinite;
+.hero-primary {
+  min-width: 0;
 }
 
-@keyframes scroll {
-  0%, 100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+/* --- eyebrow --- */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-text-3);
+}
+
+.hero-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--c-text);
+}
+
+/* --- headline ---
+   Sized so the longest line ("Software Engineer") fits the text column on one
+   line at desktop width. The previous 8vw ramp pushed it past the column
+   width, wrapping the title to four lines and leaving a large dead gap. */
+.hero-title {
+  margin-bottom: 24px;
+  font-size: clamp(2.15rem, 4.6vw, 4rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+/* Each line is its own curtain. `overflow: hidden` clips the rising text, and
+   the small bottom padding stops descenders (y, g, p) being shaved off. */
+.hero-title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.hero-title-line > [data-reveal] {
+  display: block;
+  will-change: transform;
+}
+
+/* Second line reads as the quieter one */
+.hero-title-line:nth-child(2) {
+  color: var(--c-text-3);
+}
+
+.hero-description {
+  font-size: clamp(0.98rem, 1.35vw, 1.1rem);
+  color: var(--c-text-2);
+  max-width: 46ch;
+  margin-bottom: 32px;
+}
+
+/* --- actions --- */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* --- meta strip --- */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 22px;
+  border-top: 1px solid var(--c-line-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-4);
+}
+
+.hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* Slow breathing dot — signals availability without shouting */
+.hero-meta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-text);
+  animation: meta-pulse 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes meta-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.8);
   }
   50% {
-    opacity: 0.3;
-    transform: translateX(-50%) translateY(10px);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-.hero-scroll span {
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.hero-meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--c-line-strong);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* --- portrait --- */
+/* Width-capped so the 4:5 crop stays a sane height. Without the cap the
+   portrait grows to the full column width and pushes the whole hero past the
+   fold, pushing the CTA buttons below the viewport. */
+.hero-portrait-wrap {
+  min-width: 0;
+  width: 100%;
+  max-width: 360px;
+  justify-self: end;
+}
+
+.hero-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  background: var(--c-panel);
+}
+
+/* Duotone-ish framing without a filter pass: a scrim + inset hairline */
+.hero-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    transparent 45%
+  );
+}
+
+.hero-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Grayscale keeps the palette strictly black & white */
+  filter: grayscale(1) contrast(1.06);
+  transition: transform 0.9s var(--ease-out), filter 0.6s var(--ease-out);
+}
+
+.hero-portrait:hover img {
+  transform: scale(1.035);
+  filter: grayscale(1) contrast(1.14) brightness(1.06);
+}
+
+.hero-portrait-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  color: var(--c-text-4);
+}
+
+/* --- bottom cue --- */
+.hero-foot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(40px, 6vw, 72px);
+  color: var(--c-text-4);
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.hero-foot-rule {
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: var(--c-line-strong);
+  transform-origin: left;
+  animation: foot-pulse 2.6s var(--ease-in-out) infinite;
+}
+
+@keyframes foot-pulse {
+  0%,
+  100% {
+    transform: scaleX(0.4);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.hero.is-scrolled .hero-foot {
+  opacity: 0;
+}
+
+/* =============================================================
+   SCROLL RECEDE
+   `--hero-p` is written by Hero.jsx as scrollY / innerHeight (0 → 1).
+   Driving the effect from a single custom property means one JS write per
+   frame; the browser then handles the rest as a composited transform.
+   ============================================================= */
+/* =============================================================
+   SCROLL RECEDE
+   `--hero-p` is written by Hero.jsx onto the <section> as
+   scrollY / innerHeight (0 → 1).
+
+   IMPORTANT: the fallback is declared on the SECTION, not on `.hero-inner`.
+   A custom property declared on an element always beats an inherited one, so
+   declaring `--hero-p: 0` on `.hero-inner` shadowed the value JS wrote to the
+   parent and pinned the whole effect at 0 forever.
+   ============================================================= */
+.hero {
+  --hero-p: 0;
+}
+
+.hero-inner {
+  opacity: calc(1 - var(--hero-p) * 0.55);
+  transform: scale(calc(1 - var(--hero-p) * 0.035));
+  /* Deliberately NO transition: this has to track the scroll 1:1, otherwise
+     it reads as lag. Both properties are compositor-only, so it stays smooth. */
+}
+
+/* Only a fine pointer ever writes `--hero-p`, so only a fine pointer pays
+   for the layer hints. Leaving `will-change` on a touch device would hold a
+   permanently promoted layer for an effect that never runs. */
+@media (hover: hover) and (pointer: fine) {
+  .hero-inner {
+    will-change: transform, opacity;
+  }
+
+  .hero-portrait {
+    will-change: transform;
+  }
+}
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Portrait above the fold is more valuable on mobile */
+  .hero-portrait {
+    aspect-ratio: 16 / 11;
+  }
+
+  .hero-portrait img {
+    object-position: center 25%;
+  }
+}
+
+@media (max-width: 640px) {
   .hero {
-    padding: 80px 20px;
+    padding-top: calc(var(--nav-h) + 28px);
+    padding-bottom: 48px;
   }
 
-  .avatar-wrapper {
-    width: 150px;
-    height: 150px;
+  .hero::before {
+    background-size: 50% 100%;
   }
 
-  .hero-buttons {
+  /* Sized so "Software Engineer" still fits the narrowest phone (320px) on a
+     single line rather than wrapping inside its own overflow:hidden curtain. */
+  .hero-title {
+    font-size: clamp(1.7rem, 7.6vw, 2.3rem);
+    margin-bottom: 18px;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: 26px;
+  }
+
+  .hero-actions {
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    align-items: stretch;
   }
 
-  .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-}
-
-@media (max-width: 480px) {
-  .avatar-wrapper {
-    width: 120px;
-    height: 120px;
+  .hero-foot {
+    margin-top: 32px;
   }
 
-  .avatar-fallback {
-    font-size: 2rem;
-  }
-
-  .hero-scroll .mouse {
-    width: 22px;
-    height: 36px;
+  .hero-portrait-wrap {
+    max-width: 100%;
+    justify-self: stretch;
   }
 }
 
+/* Short laptop screens (e.g. 1366x720) have little vertical room. Tighten the
+   hero so the headline, copy and CTAs all stay above the fold instead of the
+   portrait pushing the buttons off-screen. */
+@media (min-width: 901px) and (max-height: 800px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + 28px);
+    padding-bottom: 40px;
+  }
+
+  .hero-portrait-wrap {
+    max-width: 290px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 3.8vw, 3.1rem);
+  }
+
+  .hero-foot {
+    margin-top: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-foot-rule {
+    animation: none;
+    transform: scaleX(1);
+  }
+
+  .hero-title,
+  .hero-portrait {
+    will-change: auto;
+  }
+
+  .hero-inner {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+}

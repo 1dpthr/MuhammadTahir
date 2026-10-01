@@ -1,66 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/LoadingScreen.css';
 
-export default function LoadingScreen({ onLoadingComplete }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isFading, setIsFading] = useState(false);
-  const [displayText, setDisplayText] = useState('');
-  const fullText = 'dp.thr';
+const DURATION = 1100; // ms
+const FADE = 420; // ms
 
-  // derive typing state from displayText length to avoid calling setState inside effect
-  const isTyping = displayText.length < fullText.length;
+/**
+ * Short, monochrome intro. Deliberately brief: a long splash is the single
+ * biggest self-inflicted delay on a portfolio, so this is the one animation
+ * we keep, and we keep it small.
+ */
+export default function LoadingScreen({ onComplete }) {
+  const [leaving, setLeaving] = useState(false);
 
-  useEffect(() => {
-    if (displayText.length === fullText.length) return;
-
-    const timer = setInterval(() => {
-      setDisplayText(prev => prev + fullText[prev.length]);
-    }, 120);
-
-    return () => clearInterval(timer);
-  }, [displayText, fullText]);
+  const reduce =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   useEffect(() => {
-    // Show loading screen for 2.5 seconds, then fade out for 0.5s, then remove
-    const fadeTimer = setTimeout(() => {
-      setIsFading(true);
-    }, 2500);
+    const wait = reduce ? 0 : DURATION;
+    const fade = reduce ? 0 : FADE;
 
-    const hideTimer = setTimeout(() => {
-      setIsLoading(false);
-      // Notify parent that loading is complete
-      if (onLoadingComplete) {
-        onLoadingComplete();
-      }
-    }, 3000);
+    const fadeTimer = setTimeout(() => setLeaving(true), wait);
+    const doneTimer = setTimeout(() => onComplete?.(), wait + fade);
 
     return () => {
       clearTimeout(fadeTimer);
-      clearTimeout(hideTimer);
+      clearTimeout(doneTimer);
     };
-  }, [onLoadingComplete]);
+  }, [onComplete, reduce]);
 
   return (
-    <>
-      {isLoading && (
-        <div className={`loading-screen ${isFading ? 'fade-out' : ''}`}>
-          <div className="loading-container">
-            <div className="loading-text-center">
-              <h1 className="loading-typed-text">
-                {displayText}
-                {isTyping && <span className="cursor"></span>}
-              </h1>
-            </div>
-            <div className="loading-text">
-              <p>Portfolio</p>
-              <div className="loading-bar">
-                <div className="loading-progress"></div>
-              </div>
-              <p className="loading-subtext">Loading portfolio...</p>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+    <div
+      className={`loading-screen${leaving ? ' is-leaving' : ''}`}
+      role="status"
+      aria-label="Loading portfolio"
+    >
+      <div className="loading-mark">M.TAHIR</div>
+      <span className="loading-bar" aria-hidden="true">
+        <span className="loading-bar-fill" />
+      </span>
+    </div>
   );
 }

@@ -1,153 +1,176 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
-import { IoClose } from 'react-icons/io5';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Reveal from './Reveal';
+import { lockScroll } from '../utils/smoothScroll';
 import '../styles/Navigation.css';
+
+const NAV_LINKS = [
+  { name: 'Home', to: '/' },
+  { name: 'About', to: '/about' },
+  { name: 'Skills', to: '/skills' },
+  { name: 'Experience', to: '/experience' },
+  { name: 'Services', to: '/services' },
+  { name: 'Projects', to: '/projects' },
+  { name: 'Certificates', to: '/certificates' },
+  { name: 'Contact', to: '/contact' },
+];
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
+  const barRef = useRef(null);
+  const menuRef = useRef(null);
   const location = useLocation();
-  const navigate = useNavigate();
 
+  const close = useCallback(() => setIsOpen(false), []);
+
+  /* --- scroll state + progress bar (single rAF-throttled listener) ------ */
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    let raf = 0;
 
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setIsOpen(false);
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+
+      setScrolled(y > 24);
+
+      // Scale instead of width: compositor-only, no layout.
+      if (barRef.current) {
+        const p = max > 0 ? Math.min(y / max, 1) : 0;
+        barRef.current.style.transform = `scaleX(${p})`;
       }
     };
 
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
 
-    window.addEventListener('scroll', handleScroll);
-    document.addEventListener('mousedown', handleClickOutside);
-    
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'unset';
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  /* --- lock body scroll while the mobile sheet is open ------------------ */
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    lockScroll(true);
+
+    const onKey = (e) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      lockScroll(false);
+      document.removeEventListener('keydown', onKey);
     };
   }, [isOpen]);
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+    close();
+  }, [location.pathname, close]);
 
-  const handleScrollToSection = (e, sectionId) => {
-    e.preventDefault();
-    setIsOpen(false);
-    if (location.pathname === '/') {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      navigate('/');
-      setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    }
-  };
+  // Close when tapping outside the sheet.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const onDown = (e) => {
+      if (menuRef.current?.contains(e.target)) return;
+      if (navRef.current?.contains(e.target)) return;
+      setIsOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [isOpen]);
 
-  const navLinks = [
-    { name: 'Home', to: '/' },
-    { name: 'About', to: '#about', onClick: (e) => handleScrollToSection(e, 'about') },
-    { name: 'Skills', to: '/skills' },
-    { name: 'Experience', to: '/experience' },
-    { name: 'Services', to: '/services' },
-    { name: 'Projects', to: '/projects' },
-    { name: 'Certificates', to: '/certificates' },
-    { name: 'Contact', to: '#contact', onClick: (e) => handleScrollToSection(e, 'contact') }
-  ];
-
-  const isActive = (to) => {
-    if (to === '/') return location.pathname === '/';
-    if (to === '#about' || to === '#contact') return false;
-    return location.pathname === to;
-  };
+  const isActive = (to) => location.pathname === to;
 
   return (
     <>
-      <nav ref={navRef} className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <nav ref={navRef} className={`navbar${scrolled ? ' is-scrolled' : ''}`}>
         <div className="nav-container">
-          <div className="nav-logo">
-            <Link to="/" className="logo-text">M.TAHIR</Link>
-          </div>
+          <Link to="/" className="nav-logo" onClick={close}>
+            <span className="nav-logo-mark" aria-hidden="true" />
+            M.TAHIR
+          </Link>
 
           <ul className="nav-menu">
-            {navLinks.map((link) => (
-              <li key={link.name} className="nav-item">
-                {link.onClick ? (
-                  <a
-                    href={link.to}
-                    className={`nav-link ${isActive(link.to) ? 'active' : ''}`}
-                    onClick={link.onClick}
-                  >
-                    {link.name}
-                  </a>
-                ) : (
-                  <Link
-                    to={link.to}
-                    className={`nav-link ${isActive(link.to) ? 'active' : ''}`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                )}
+            {NAV_LINKS.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  className={`nav-link${isActive(link.to) ? ' is-active' : ''}`}
+                  aria-current={isActive(link.to) ? 'page' : undefined}
+                >
+                  {link.name}
+                </Link>
               </li>
             ))}
           </ul>
 
           <button
-            className="hamburger"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            type="button"
+            className="nav-toggle"
+            onClick={() => setIsOpen((v) => !v)}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
-            {isOpen ? <IoClose size={24} /> : <FaBars size={22} />}
+            <span className={`nav-burger${isOpen ? ' is-open' : ''}`} aria-hidden="true">
+              <span />
+              <span />
+            </span>
           </button>
+        </div>
+
+        <div className="scroll-progress" aria-hidden="true">
+          <span ref={barRef} className="scroll-progress-bar" />
         </div>
       </nav>
 
-      <div 
-        className={`mobile-overlay ${isOpen ? 'active' : ''}`}
-        onClick={() => setIsOpen(false)}
-      />
-
-      <ul className={`mobile-menu ${isOpen ? 'active' : ''}`}>
-        {navLinks.map((link) => (
-          <li key={link.name} className="mobile-menu-item">
-            {link.onClick ? (
-              <a
-                href={link.to}
-                className="mobile-menu-link"
-                onClick={link.onClick}
-              >
-                {link.name}
-              </a>
-            ) : (
+      {/* ---------- Mobile sheet ---------- */}
+      <div
+        ref={menuRef}
+        id="mobile-menu"
+        className={`mobile-menu${isOpen ? ' is-open' : ''}`}
+        hidden={!isOpen}
+      >
+        <ul className="mobile-menu-list">
+          {NAV_LINKS.map((link, i) => (
+            <Reveal
+              as="li"
+              key={link.to}
+              variant="up"
+              delay={isOpen ? i * 45 : 0}
+              className="mobile-menu-item"
+            >
               <Link
                 to={link.to}
-                className="mobile-menu-link"
-                onClick={() => setIsOpen(false)}
+                className={`mobile-menu-link${
+                  isActive(link.to) ? ' is-active' : ''
+                }`}
+                onClick={close}
               >
+                <span className="mobile-menu-index mono">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
                 {link.name}
               </Link>
-            )}
-          </li>
-        ))}
-      </ul>
+            </Reveal>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

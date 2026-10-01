@@ -2,137 +2,129 @@ import { useState } from 'react';
 import { portfolioData } from '../data';
 import ICON_MAP from '../utils/iconMap';
 import CertificateModal from './CertificateModal';
+import Reveal from './Reveal';
+import { stagger } from '../utils/reveal';
+import SectionHeader from './SectionHeader';
 import '../styles/Experience.css';
 
+const getFileType = (filePath) => {
+  if (!filePath) return null;
+  const ext = filePath.split('.').pop().toLowerCase();
+  return ['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext) ? 'image' : 'pdf';
+};
+
 export default function Experience() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalFile, setModalFile] = useState(null);
-  const [modalFileType, setModalFileType] = useState(null);
-  const [modalTitle, setModalTitle] = useState('');
+  const [modal, setModal] = useState(null);
 
-  const openCertificate = (file, type, title) => {
-    setModalFile(file);
-    setModalFileType(type);
-    setModalTitle(title);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setModalFile(null);
-    setModalFileType(null);
-    setModalTitle('');
-  };
-
-  const getFileType = (filePath) => {
-    if (!filePath) return null;
-    const ext = filePath.split('.').pop().toLowerCase();
-    return ['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext) ? 'image' : 'pdf';
-  };
+  const openDocument = (file, title) =>
+    setModal({ file, fileType: getFileType(file), title });
 
   return (
     <section id="experience" className="experience">
       <div className="container">
-        <div className="section-header">
-          <span className="section-number">03.</span>
-          <h2 className="section-title">Experience</h2>
-          <p className="section-description">Internship experience in front-end and backend development</p>
-        </div>
+        <SectionHeader
+          number="03 — Experience"
+          title="Experience"
+          description="Internships across front-end, back-end, and mobile development."
+        />
 
         <div className="timeline">
           {portfolioData.experience.map((exp, index) => {
             const IconComp = ICON_MAP[exp.icon];
-            const hasCertificate = !!exp.certificate;
-            const hasLor = !!exp.lor;
-            const certFileType = hasCertificate ? getFileType(exp.certificate) : null;
-            const lorFileType = hasLor ? getFileType(exp.lor) : null;
 
             return (
-            <div key={index} className="timeline-item">
-              <div className="timeline-marker">
-                <div className="timeline-dot"></div>
-              </div>
-              
-              <div className="timeline-content">
-                <div className="experience-card card">
-                  <div className="experience-header">
-                    <div className="experience-icon">{IconComp ? <IconComp /> : exp.icon}</div>
+              <Reveal
+                key={`${exp.company}-${exp.duration}`}
+                className="timeline-item"
+                variant="left"
+                delay={stagger(index, 90)}
+              >
+                <div className="timeline-rail" aria-hidden="true">
+                  <span className="timeline-dot" />
+                </div>
+
+                <article className="card card-sweep experience-card">
+                  <header className="experience-header">
+                    <div className="icon-tile">
+                      {IconComp ? <IconComp size={20} /> : null}
+                    </div>
                     <div className="experience-meta">
                       <h3>{exp.company}</h3>
                       <span className="experience-role">{exp.role}</span>
-                      <span className="experience-duration">{exp.duration}</span>
+                      <span className="mono experience-duration">
+                        {exp.duration}
+                      </span>
                     </div>
+                  </header>
+
+                  <h4 className="experience-subhead">Responsibilities</h4>
+                  <ul className="responsibilities-list">
+                    {exp.responsibilities.map((item) => (
+                      <li key={item.title}>
+                        <span className="bullet" aria-hidden="true" />
+                        <div>
+                          <strong>{item.title}:</strong> {item.description}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <h4 className="experience-subhead">Technical Skills</h4>
+                  <div className="tag-row">
+                    {exp.skills.map((skill) => (
+                      <span key={skill} className="tag">
+                        {skill}
+                      </span>
+                    ))}
                   </div>
 
-                  <div className="experience-content">
-                    <h4>Responsibilities</h4>
-                    <ul className="responsibilities-list">
-                      {exp.responsibilities.map((item, idx) => (
-                        <li key={idx}>
-                          <span className="bullet">+</span>
-                          <div>
-                            <strong>{item.title}:</strong> {item.description}
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <h4>Technical Skills</h4>
-                    <div className="skill-tags">
-                      {exp.skills.map((skill) => (
-                        <span key={skill} className="skill-tag">{skill}</span>
-                      ))}
-                    </div>
-
-                    {/* Certificate & LOR Buttons */}
-                    {(hasCertificate || hasLor) && (
-                      <div className="certificate-actions">
-                        {hasCertificate && (
-                          <button
-                            className="certificate-btn"
-                            onClick={() => openCertificate(
+                  {(exp.certificate || exp.lor) && (
+                    <div className="certificate-actions">
+                      {exp.certificate && (
+                        <button
+                          type="button"
+                          className="btn btn-outline certificate-btn"
+                          onClick={() =>
+                            openDocument(
                               exp.certificate,
-                              certFileType,
-                              `${exp.company} - Certificate`
-                            )}
-                          >
-                            <span className="certificate-btn-icon">&#128196;</span>
-                            View Certificate
-                          </button>
-                        )}
-                        {hasLor && (
-                          <button
-                            className="certificate-btn lor-btn"
-                            onClick={() => openCertificate(
+                              `${exp.company} — Certificate`
+                            )
+                          }
+                        >
+                          View Certificate
+                        </button>
+                      )}
+                      {exp.lor && (
+                        <button
+                          type="button"
+                          className="btn btn-outline certificate-btn"
+                          onClick={() =>
+                            openDocument(
                               exp.lor,
-                              lorFileType,
-                              `${exp.company} - Letter of Recommendation`
-                            )}
-                          >
-                            <span className="certificate-btn-icon">&#128220;</span>
-                            View Letter of Recommendation
-                          </button>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )})}
+                              `${exp.company} — Letter of Recommendation`
+                            )
+                          }
+                        >
+                          View LOR
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
 
-      {/* Certificate Modal */}
-      {modalOpen && modalFile && (
+      {modal && (
         <CertificateModal
-          file={modalFile}
-          fileType={modalFileType}
-          title={modalTitle}
-          onClose={closeModal}
+          file={modal.file}
+          fileType={modal.fileType}
+          title={modal.title}
+          onClose={() => setModal(null)}
         />
       )}
     </section>
   );
 }
-

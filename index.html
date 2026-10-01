@@ -2,37 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Muhammad Tahir - Software Engineer & Creative Developer</title>
-    <meta name="description" content="Muhammad Tahir - Passionate Software Engineering student creating optimized software solutions. Explore my portfolio featuring web development, UI/UX design, and innovative projects.">
-    <meta name="author" content="Muhammad Tahir">
-    <meta name="keywords" content="Software Engineer, Web Developer, React, UI/UX Designer, Portfolio">
-    <meta name="theme-color" content="#06b6d4">
-    
-    <!-- Essential CSS -->
-    <style>
-      /* Base styles */
-      html, body {
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #08080f 0%, #0f0f1f 50%, #1a0f2e 100%);
-        min-height: 100vh;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        color: #fff;
-      }
-      #root {
-        min-height: 100vh;
-        background: linear-gradient(135deg, #08080f 0%, #0f0f1f 50%, #1a0f2e 100%);
-      }
-    </style>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Muhammad Tahir — Software Engineer &amp; Creative Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Muhammad Tahir, a software engineering student building responsive web applications, cross-platform mobile apps, and interactive games with React, Node.js, Flutter, C++, C# and Unity."
+    />
+    <meta name="author" content="Muhammad Tahir" />
+    <meta
+      name="keywords"
+      content="Muhammad Tahir, Software Engineer, Web Developer, React, Flutter, Unity, Game Developer, Portfolio"
+    />
+
+    <!-- Black & white only; matches the app's own background to avoid a flash -->
+    <meta name="theme-color" content="#060606" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Muhammad Tahir — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Web, mobile and game development portfolio of Muhammad Tahir."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+    <!-- Paint the correct background before any app CSS parses, so there is
+         never a white flash. Kept in a file rather than an inline <style>
+         block: Vite's inline-style HTML proxy breaks on paths containing
+         spaces, which this repo's checkout path does. -->
+    <link rel="stylesheet" href="%BASE_URL%critical.css" />
+
+    <!-- Fonts: preconnect first, then the stylesheet, with swap so text never
+         blocks on a slow connection. Only the weights actually used. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

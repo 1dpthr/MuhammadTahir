@@ -1,55 +1,62 @@
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import { portfolioData } from '../data';
+import Reveal from './Reveal';
 import '../styles/Footer.css';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   const socialLinks = [
     { icon: FaGithub, href: portfolioData.social.github, label: 'GitHub' },
     { icon: FaLinkedin, href: portfolioData.social.linkedin, label: 'LinkedIn' },
     { icon: FaInstagram, href: portfolioData.social.instagram, label: 'Instagram' },
-    { icon: FaEnvelope, href: portfolioData.social.email, label: 'Email' }
+    { icon: FaEnvelope, href: portfolioData.social.email, label: 'Email' },
   ];
 
   return (
     <footer className="footer">
-      <div className="footer-content">
-        <div className="container">
+      <div className="container">
+        <Reveal variant="up">
           <div className="footer-main">
             <div className="footer-branding">
-              <div className="footer-logo">M.TAHIR</div>
-              <p className="footer-text">Muhammad Tahir | Software Engineering Student</p>
+              <span className="footer-logo">M.TAHIR</span>
+              <p className="footer-text">
+                Software Engineering Student — Web, Mobile &amp; Unity Developer
+              </p>
             </div>
 
-            <div className="footer-social">
-              {socialLinks.map((social, index) => {
+            <ul className="footer-social">
+              {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                    title={social.label}
-                  >
-                    <Icon size={18} />
-                  </a>
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-link"
+                      aria-label={social.label}
+                    >
+                      <Icon size={17} aria-hidden="true" />
+                    </a>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
+        </Reveal>
 
-          <div className="footer-divider"></div>
+        <div className="footer-divider" />
 
+        <Reveal variant="up" delay={80}>
           <div className="footer-bottom">
-            <p>© {currentYear} Muhammad Tahir. Software Engineering Student | Unity Game Developer.</p>
-            <p className="footer-note">Designed and built with React.</p>
+            <p>
+              &copy; {year} Muhammad Tahir. All rights reserved.
+            </p>
+            <p className="footer-note">Designed &amp; built with React.</p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </footer>
   );
 }
-
