@@ -160,8 +160,12 @@ export default function Hero() {
               <img
                 src={profilePhoto}
                 alt={portfolioData.name}
-                width="640"
-                height="640"
+                /* Must match the real asset (Profile.jpg is 1080x1920). The old
+                   640x640 lied about the intrinsic ratio, so the browser reserved
+                   a square box before the CSS aspect-ratio applied and the layout
+                   jumped once the image decoded. */
+                width="1080"
+                height="1920"
                 decoding="async"
                 fetchpriority="high"
               />

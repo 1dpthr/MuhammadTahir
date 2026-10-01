@@ -7,9 +7,12 @@
   inset: 0 0 auto;
   z-index: 1000;
   height: var(--nav-h);
-  background: rgba(6, 6, 6, 0.72);
-  /* No backdrop-filter: it repaints every frame while scrolling.
-     A near-opaque flat background reads the same and costs nothing. */
+  /* Near-opaque on purpose: hero copy scrolling underneath used to read
+     straight through the 0.72 base and collide with the logo. There is no
+     backdrop-filter here (it repaints every frame while scrolling), so the
+     opacity itself has to carry legibility. 0.92/0.98 keeps the bar reading as
+     a solid surface without going fully flat black. */
+  background: rgba(6, 6, 6, 0.92);
   border-bottom: 1px solid transparent;
   transition:
     background-color var(--t-base) var(--ease-out),
@@ -17,7 +20,7 @@
 }
 
 .navbar.is-scrolled {
-  background: rgba(6, 6, 6, 0.94);
+  background: rgba(6, 6, 6, 0.98);
   border-bottom-color: var(--c-line);
 }
 
