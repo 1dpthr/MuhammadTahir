@@ -31,4 +31,13 @@ export default defineConfig([
       ],
     },
   },
+  {
+    // Build/tooling config files execute in Node, not the browser, so they
+    // need Node globals (`process`, `__dirname`, ...). Placed after the block
+    // above so its `globals.browser` does not apply to them.
+    files: ['*.config.js', '*.config.mjs', 'eslint.config.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 ])
